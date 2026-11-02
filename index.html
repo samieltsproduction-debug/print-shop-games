@@ -5,124 +5,151 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Print Shop Games – IELTS Task 1 Process</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;800&family=Pixelify+Sans:wght@500;700&family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet">
 <style>
-/* ============ STYLE C · PRINT SHOP (CMYK) ============ */
+/* ============ STYLE B · PRINT SHOP, DỊU MẮT ============
+   Nền cát ấm, viền mảnh, bóng nhẹ, hình vẽ đen trắng; màu chỉ để đánh dấu (đang chọn, đúng/sai, bước đang xét). */
 :root{
-  --c:#00A3D9; --m:#D6246E; --y:#F5C400; --k:#161616;
-  --paper:#FBF8F1; --dot:#E7DFCF; --ok:#1E9E5A; --ng:#D6246E; --muted:#6B6B6B;
+  --ink:#2F2D2A; --ink2:#5E5950; --muted:#857E73;
+  --paper:#F4EFE5; --card:#FFFDF9; --line:#DED5C5; --line2:#C4B9A6;
+  --c:#7FA9B8; --m:#B87C92; --y:#DDC27A; --k:#55514B;
+  --accent:#3F6C7B; --accent-soft:#E3EEF0; --mark:#F5E7B4; --rose:#9E5A70;
+  --ok:#3F8A5A; --ok-bg:#E5F1E8; --ng:#B4505F; --ng-bg:#F7E5E7;
+  --shadow:0 1px 2px rgba(70,55,30,.07),0 3px 10px rgba(70,55,30,.05);
   --sans:'Be Vietnam Pro',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
-  --pixel:'Pixelify Sans','Be Vietnam Pro',monospace;
   --serif:'Playfair Display',Georgia,'Times New Roman',serif;
 }
 *{box-sizing:border-box}
 html,body{margin:0}
-body{font-family:var(--sans);color:var(--k);background:var(--paper);
-  background-image:radial-gradient(var(--dot) 1.2px,transparent 1.3px);background-size:12px 12px;min-height:100vh}
-.cmyk{display:flex;height:8px;position:sticky;top:0;z-index:5}.cmyk i{flex:1}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);min-height:100vh}
+a{color:var(--accent)}
+.cmyk{display:flex;height:5px;position:sticky;top:0;z-index:5}.cmyk i{flex:1}
 .cmyk i:nth-child(1){background:var(--c)}.cmyk i:nth-child(2){background:var(--m)}.cmyk i:nth-child(3){background:var(--y)}.cmyk i:nth-child(4){background:var(--k)}
-.wrap{max-width:980px;margin:0 auto;padding:20px 20px 60px}
-.mast{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:3px double var(--k);padding-bottom:10px;margin-bottom:18px;flex-wrap:wrap}
-.gname{font-family:var(--pixel);font-weight:700;font-size:34px;line-height:1;letter-spacing:.5px}
-.mast .meta{font-size:14px;font-weight:600;text-align:right}
-.serif{font-family:var(--serif);font-weight:900}
-h2{font-size:22px;margin:18px 0 10px}
-p{line-height:1.55}
+.wrap{max-width:1000px;margin:0 auto;padding:20px 20px 60px}
+.wrap.wide{max-width:1320px}
+.mast{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:3px double var(--line2);padding-bottom:10px;margin-bottom:18px;flex-wrap:wrap}
+.gname{font-weight:700;font-size:28px;line-height:1.1;letter-spacing:-.2px}
+.mast .meta{font-size:14px;font-weight:600;text-align:right;color:var(--ink2)}
+.serif{font-family:var(--serif);font-weight:800}
+h2{font-size:21px;margin:2px 0 10px}
+p{line-height:1.6}
 .muted{color:var(--muted)}
-.btn{font-family:var(--sans);font-size:17px;font-weight:600;background:#fff;color:var(--k);border:2px solid var(--k);
-  box-shadow:4px 4px 0 var(--k);padding:11px 18px;cursor:pointer;transition:transform .06s,box-shadow .06s;text-align:left}
-.btn:hover{transform:translate(-1px,-1px);box-shadow:5px 5px 0 var(--k)}
-.btn:active{transform:translate(3px,3px);box-shadow:1px 1px 0 var(--k)}
-.btn[disabled]{opacity:.4;cursor:not-allowed;transform:none;box-shadow:4px 4px 0 var(--k)}
-.btn.primary{background:var(--m);color:#fff}
-.btn.sel{background:var(--c);color:#fff}
-.btn.small{font-size:15px;padding:7px 12px;box-shadow:3px 3px 0 var(--k)}
-.btn.okf{background:var(--ok)!important;color:#fff!important}
-.btn.ngf{background:var(--ng)!important;color:#fff!important}
-.row{display:flex;gap:12px;flex-wrap:wrap}
-.col{display:flex;flex-direction:column;gap:10px}
-.card{background:#fff;border:2px solid var(--k);padding:16px 18px}
-.hint{background:#fff;border-left:6px solid var(--y);padding:10px 14px;margin:10px 0 16px;font-size:16px}
-.prompt{font-size:22px;font-weight:600;line-height:1.5;margin:6px 0 16px}
-input[type=text],textarea{font-family:var(--sans);font-size:18px;padding:10px 12px;border:2px solid var(--k);width:100%;background:#fff}
+.btn{font-family:var(--sans);font-size:16px;font-weight:600;background:var(--card);color:var(--ink);border:1px solid var(--line2);border-radius:10px;
+  box-shadow:var(--shadow);padding:10px 16px;cursor:pointer;transition:background .15s,border-color .15s;text-align:left;line-height:1.4}
+.btn:hover{border-color:var(--accent)}
+.btn:active{transform:translateY(1px)}
+.btn[disabled]{opacity:.45;cursor:not-allowed;transform:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.sel{background:var(--accent-soft);border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.btn.small{font-size:15px;padding:7px 12px}
+.btn.okf{background:var(--ok-bg)!important;border-color:var(--ok)!important;color:var(--ink)!important}
+.btn.ngf{background:var(--ng-bg)!important;border-color:var(--ng)!important;color:var(--ink)!important}
+.btn.okf::after,.chip.okf::after,.seg.okf::after{content:' ✓';color:var(--ok);font-weight:800}
+.btn.ngf::after,.chip.ngf::after,.seg.ngf::after{content:' ✗';color:var(--ng);font-weight:800}
+.row{display:flex;gap:10px;flex-wrap:wrap}
+.col{display:flex;flex-direction:column;gap:8px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.hint{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--y);border-radius:8px;padding:10px 14px;margin:0 0 16px;font-size:15.5px;color:var(--ink2);line-height:1.55}
+.prompt{font-size:21px;font-weight:600;line-height:1.55;margin:6px 0 16px}
+input[type=text],textarea{font-family:var(--sans);font-size:17px;padding:10px 12px;border:1px solid var(--line2);border-radius:8px;width:100%;background:var(--card);color:var(--ink)}
+input[type=text]:focus,textarea:focus{outline:3px solid var(--accent-soft);border-color:var(--accent)}
 textarea{font-size:14px;min-height:120px}
 /* progress = paper through the press */
 .press{display:flex;align-items:center;gap:10px;margin:0 0 18px}
-.press .cyl{width:30px;height:30px;border-radius:50%;background:#CFCFD4;border:3px solid #8E8E96;position:relative;flex:none}
-.press .cyl::after{content:'';position:absolute;inset:8px;border-radius:50%;background:#3a3550}
-.strip{flex:1;height:22px;background:#E6E6E6;border:2px solid var(--k);position:relative;overflow:hidden}
-.strip i{position:absolute;left:0;top:0;bottom:0;background:repeating-linear-gradient(90deg,var(--m) 0 24px,#fff 24px 28px);transition:width .35s}
-.press .count{font-weight:800;font-size:20px;min-width:70px;text-align:right}
+.press .cyl{width:22px;height:22px;border-radius:50%;background:#E6E0D4;border:2px solid var(--line2);position:relative;flex:none}
+.press .cyl::after{content:'';position:absolute;inset:5px;border-radius:50%;background:var(--k);opacity:.5}
+.strip{flex:1;height:12px;background:#EAE3D6;border-radius:6px;position:relative;overflow:hidden}
+.strip i{position:absolute;left:0;top:0;bottom:0;background:var(--accent);opacity:.7;border-radius:6px;transition:width .35s}
+.press .count{font-weight:800;font-size:18px;min-width:70px;text-align:right;color:var(--ink2)}
+/* split screen: figure left, game right */
+.split{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:22px;align-items:start}
+.fig{position:sticky;top:18px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.fig svg{display:block;width:100%;height:auto}
+.fig .cap{font-size:13px;font-weight:600;color:var(--muted);margin:2px 2px 8px}
+#stage{min-width:0}
 /* hub */
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:18px}
-.gcard{background:#fff;border:2px solid var(--k);box-shadow:5px 5px 0 var(--k);padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:6px;position:relative}
-.gcard:hover{transform:translate(-1px,-1px);box-shadow:6px 6px 0 var(--k)}
-.gcard .letter{position:absolute;top:12px;right:14px;font-weight:800;font-size:26px;color:var(--m)}
-.gcard .t{font-family:var(--pixel);font-size:24px;font-weight:700}
-.gcard .s{font-size:13px;font-weight:600;color:var(--c);text-transform:uppercase;letter-spacing:.4px}
-.gcard .d{font-size:15px;line-height:1.45}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
+.gcard{background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);padding:16px;cursor:pointer;display:flex;flex-direction:column;gap:6px;position:relative;transition:border-color .15s}
+.gcard:hover{border-color:var(--accent)}
+.gcard .letter{position:absolute;top:12px;right:14px;font-weight:800;font-size:22px;color:var(--rose)}
+.gcard .t{font-size:21px;font-weight:700;letter-spacing:-.2px}
+.gcard .s{font-size:12.5px;font-weight:600;color:var(--accent);text-transform:uppercase;letter-spacing:.4px}
+.gcard .d{font-size:15px;line-height:1.5;color:var(--ink2)}
 .gcard .done{font-size:14px;font-weight:700;color:var(--ok)}
 /* chips, bins, tiles */
-.chip{display:inline-block;background:#fff;border:2px solid var(--k);padding:8px 12px;margin:4px;font-size:16px;cursor:pointer;box-shadow:3px 3px 0 var(--k);user-select:none}
-.chip.sel{background:var(--c);color:#fff}
-.chip.okf{background:var(--ok);color:#fff}.chip.ngf{background:var(--ng);color:#fff}
-.chip.ghost{opacity:.25;pointer-events:none}
-.bins{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:14px}
-.bin{background:#fff;border:2px dashed var(--k);min-height:220px;padding:10px;cursor:pointer}
-.bin h4{margin:0 0 8px;font-size:15px;text-transform:uppercase}
-.bin .names{border-top:1px solid #ccc;margin-top:8px;padding-top:6px;font-size:13px}
-.bin .names .chip{font-size:13px;padding:5px 8px;box-shadow:2px 2px 0 var(--k)}
-.pool{min-height:60px;padding:8px;background:rgba(255,255,255,.6);border:2px solid var(--k)}
-.answerline{min-height:64px;background:#fff;border:2px solid var(--k);padding:8px;margin:8px 0 12px}
-.chain{display:flex;align-items:center;gap:6px;margin:6px 0 14px;flex-wrap:wrap}
-.chain .n{width:38px;height:38px;border-radius:50%;border:2px solid var(--k);display:flex;align-items:center;justify-content:center;font-weight:800;background:#fff}
-.chain .n.on{background:var(--m);color:#fff}
-.chain .ln{width:22px;height:2px;background:var(--k)}
-.seg{display:inline;padding:3px 4px;border-bottom:3px dotted var(--c);cursor:pointer;margin:0 1px}
-.seg.sel{background:var(--y)}
-.seg.okf{background:var(--ok);color:#fff}.seg.ngf{background:var(--ng);color:#fff}
-.slotrow{display:grid;grid-template-columns:40px 230px 1fr;gap:10px;align-items:stretch;margin-bottom:10px}
-.slot{background:#fff;border:2px dashed var(--k);padding:10px;min-height:48px;cursor:pointer;font-size:16px}
+.chip{display:inline-block;background:var(--card);border:1px solid var(--line2);border-radius:8px;padding:7px 12px;margin:4px;font-size:16px;cursor:pointer;box-shadow:var(--shadow);user-select:none;transition:background .15s,border-color .15s}
+.chip:hover{border-color:var(--accent)}
+.chip.sel{background:var(--accent-soft);border-color:var(--accent)}
+.chip.okf{background:var(--ok-bg);border-color:var(--ok)}.chip.ngf{background:var(--ng-bg);border-color:var(--ng)}
+.chip.ghost{opacity:.28;pointer-events:none}
+.bins{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.bin{background:var(--card);border:1.5px dashed var(--line2);border-radius:10px;min-height:220px;padding:10px;cursor:pointer}
+.bin:hover{border-color:var(--accent)}
+.bin h4{margin:0 0 8px;font-size:14px;text-transform:uppercase;letter-spacing:.4px;color:var(--ink2)}
+.bin .names{border-top:1px solid var(--line);margin-top:8px;padding-top:6px;font-size:13px;color:var(--muted)}
+.bin .names .chip{font-size:13px;padding:4px 8px}
+.pool{min-height:60px;padding:8px;background:rgba(255,255,255,.55);border:1px solid var(--line);border-radius:10px}
+.answerline{min-height:60px;background:var(--card);border:1px solid var(--line2);border-radius:10px;padding:8px;margin:8px 0 12px}
+.seg{display:inline;padding:3px 4px;border-bottom:2px dotted var(--accent);border-radius:3px;cursor:pointer;margin:0 1px}
+.seg.sel{background:var(--mark)}
+.seg.okf{background:var(--ok-bg)}.seg.ngf{background:var(--ng-bg)}
+.slotrow{display:grid;grid-template-columns:34px 200px 1fr;gap:10px;align-items:stretch;margin-bottom:10px}
+.slot{background:var(--card);border:1.5px dashed var(--line2);border-radius:8px;padding:10px;min-height:46px;cursor:pointer;font-size:15.5px}
 .slot.filled{border-style:solid}
-.slot.okf{background:#E3F5EA}.slot.ngf{background:#FBE3EC}
-.num{font-weight:800;font-size:26px;display:flex;align-items:center;justify-content:center}
+.slot.okf{background:var(--ok-bg);border-color:var(--ok)}.slot.ngf{background:var(--ng-bg);border-color:var(--ng)}
+.num{font-weight:800;font-size:22px;color:var(--ink2);display:flex;align-items:center;justify-content:center}
 /* suffix rush */
-.chute{position:relative;height:300px;background:#fff;border:2px solid var(--k);overflow:hidden;margin-bottom:14px}
-.chute .word{position:absolute;left:50%;transform:translateX(-50%);top:-60px;font-size:30px;font-weight:800;background:var(--y);border:2px solid var(--k);padding:8px 18px;box-shadow:4px 4px 0 var(--k)}
-.chute .floor{position:absolute;left:0;right:0;bottom:0;height:10px;background:repeating-linear-gradient(90deg,var(--k) 0 10px,var(--y) 10px 20px)}
-.combo{font-weight:800;font-size:22px;color:var(--m)}
-.suffixes{display:grid;grid-template-columns:repeat(7,1fr);gap:8px}
-.suffixes .btn{text-align:center;padding:12px 4px;font-size:16px}
+.chute{position:relative;height:300px;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:14px}
+.chute .word{position:absolute;left:50%;transform:translateX(-50%);top:-60px;font-size:28px;font-weight:800;background:var(--mark);border:1px solid var(--line2);border-radius:10px;padding:8px 18px;box-shadow:var(--shadow)}
+.chute .floor{position:absolute;left:0;right:0;bottom:0;height:8px;background:repeating-linear-gradient(90deg,var(--line2) 0 10px,transparent 10px 20px)}
+.combo{font-weight:800;font-size:20px;color:var(--rose)}
+.suffixes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.suffixes .btn{text-align:center;padding:10px 4px;font-size:15.5px}
 .suffixes .btn small{display:block;font-size:11px;color:var(--muted);font-weight:500}
-.svgbox{background:#fff;border:2px solid var(--k);padding:8px;margin-bottom:12px}
 .q{font-weight:700;margin:14px 0 6px}
 /* summary newspaper */
-.paper{background:#fff;border:2px solid var(--k);box-shadow:6px 6px 0 var(--k);padding:22px 26px}
-.paper .masthead{text-align:center;border-bottom:3px double var(--k);padding-bottom:8px}
-.paper .masthead .title{font-family:var(--serif);font-weight:900;font-size:44px;line-height:1.05}
-.paper .dateline{display:flex;justify-content:space-between;font-size:13px;font-weight:600;border-bottom:1px solid var(--k);padding:6px 0;margin-bottom:14px;flex-wrap:wrap;gap:6px}
-.headline{font-family:var(--serif);font-weight:900;font-size:30px;line-height:1.15;margin:4px 0 14px}
+.paper{background:var(--card);border:1px solid var(--line);border-radius:6px;box-shadow:var(--shadow);padding:22px 26px}
+.paper .masthead{text-align:center;border-bottom:3px double var(--line2);padding-bottom:8px}
+.paper .masthead .title{font-family:var(--serif);font-weight:800;font-size:40px;line-height:1.05}
+.paper .dateline{display:flex;justify-content:space-between;font-size:13px;font-weight:600;color:var(--ink2);border-bottom:1px solid var(--line2);padding:6px 0;margin-bottom:14px;flex-wrap:wrap;gap:6px}
+.headline{font-family:var(--serif);font-weight:800;font-size:27px;line-height:1.2;margin:4px 0 14px}
 .cols{display:grid;grid-template-columns:1.25fr 1fr;gap:24px}
-.cols h3{font-family:var(--serif);font-size:20px;margin:0 0 8px;border-bottom:1px solid var(--k);padding-bottom:4px}
-.pattern{background:#FFF7D1;border:2px solid var(--k);padding:12px 14px;margin-bottom:16px}
-.pattern li{margin:4px 0;line-height:1.5}
-.err{border-bottom:1px dashed #bbb;padding:8px 0}
-.err .h{font-weight:700;color:var(--m)}
+.cols h3{font-family:var(--serif);font-size:19px;margin:0 0 8px;border-bottom:1px solid var(--line2);padding-bottom:4px}
+.pattern{background:#FBF5E1;border:1px solid #E9DDB5;border-radius:10px;padding:12px 14px;margin-bottom:16px}
+.pattern li{margin:4px 0;line-height:1.55}
+.err{border-bottom:1px dashed var(--line);padding:8px 0}
+.err .h{font-weight:700;color:var(--rose)}
 .err .x{font-size:15px;margin:3px 0}
 .err .x s{color:var(--muted)}
-.err .vn{font-size:14px;color:#333}
+.err .vn{font-size:14px;color:var(--ink2)}
 .bar{margin:8px 0}
 .bar .lab{font-size:14px;display:flex;justify-content:space-between}
-.bar .tr{height:12px;background:#eee;border:1px solid var(--k)}
-.bar .tr i{display:block;height:100%;background:var(--c)}
-.trap{font-size:14px;margin:6px 0;line-height:1.45}
-details{margin-top:16px;border:2px solid var(--k);padding:10px 14px;background:#F2FBFE}
+.bar .tr{height:10px;background:#ECE6DA;border-radius:5px;overflow:hidden}
+.bar .tr i{display:block;height:100%;background:var(--accent);opacity:.75;border-radius:5px}
+.trap{font-size:14px;margin:6px 0;line-height:1.5;color:var(--ink2)}
+details{margin-top:16px;border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#F2F5F3}
 summary{cursor:pointer;font-weight:700}
-table{border-collapse:collapse;width:100%;font-size:14px;background:#fff}
-th,td{border:1px solid var(--k);padding:6px 8px;text-align:left;vertical-align:top}
-th{background:#F4F1EA}
-.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--k);color:#fff;padding:10px 18px;font-weight:600;z-index:9}
-@media (max-width:720px){.cols{grid-template-columns:1fr}.bins{grid-template-columns:1fr}.suffixes{grid-template-columns:repeat(4,1fr)}.slotrow{grid-template-columns:30px 1fr}.slotrow .slot.s{grid-column:2}.gname{font-size:26px}}
+table{border-collapse:collapse;width:100%;font-size:14px;background:var(--card)}
+th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
+th{background:#F1ECE2}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--k);color:#fff;padding:10px 18px;border-radius:10px;font-weight:600;z-index:9}
+/* diagrams (black & white line drawings; --mark = the step being discussed) */
+.dg text{font-family:var(--sans);fill:var(--ink)}
+.dg .tt{font-size:15px;font-weight:700}
+.dg .lab{font-size:12.5px;fill:var(--ink2)}
+.dg .in{font-size:12px;text-anchor:middle}
+.dg .ln{fill:none;stroke:var(--ink);stroke-width:1.5}
+.dg .fl{fill:var(--card);stroke:var(--ink);stroke-width:1.5}
+.dg .soft{fill:#EFE9DD;stroke:var(--ink);stroke-width:1.2}
+.dg .web{fill:none;stroke:var(--ink2);stroke-width:3}
+.dg .dash{fill:none;stroke:var(--ink2);stroke-width:1.5;stroke-dasharray:6 5}
+.dg .arw{fill:var(--ink)}
+.dg .badge circle{fill:var(--card);stroke:var(--ink);stroke-width:1.3}
+.dg .badge text{font-size:12px;font-weight:800;text-anchor:middle}
+.dg .on .fl,.dg .badge.on circle{fill:var(--mark)}
+.dg .on .fl{stroke-width:2.2}
+@media (max-width:900px){.split{grid-template-columns:1fr}.fig{position:static}}
+@media (max-width:720px){.cols{grid-template-columns:1fr}.bins{grid-template-columns:1fr}.slotrow{grid-template-columns:28px 1fr}.slotrow .slot.s{grid-column:2}.gname{font-size:24px}.paper{padding:16px}.paper .masthead .title{font-size:32px}}
 </style>
 </head>
 <body>
@@ -179,7 +206,8 @@ const ERR = {
   TM_LOGIC:    {g:'Time markers', label:'Marker không hợp vị trí', vn:'Body 2 không mở bằng Firstly; bước cuối cần Finally.'},
   CMB_ORDER:   {g:'Gộp câu',   label:'Sai trật tự khi gộp câu', vn:'Giữ trình tự của hình: bước trước – công cụ nối – bước sau.'},
   CMB_TOOL:    {g:'Gộp câu',   label:'Dùng sai công cụ nối', vn:'after which + mệnh đề; which thay cho danh từ đứng ngay trước; where = tại vị trí đó; before being + V3.'},
-  CMB_PRONOUN: {g:'Gộp câu',   label:'Thiếu/thừa đại từ sau where/which', vn:'where + mệnh đề đủ (it is pressed); which đã là chủ ngữ (which is located).'}
+  CMB_PRONOUN: {g:'Gộp câu',   label:'Thiếu/thừa đại từ sau where/which', vn:'where + mệnh đề đủ (it is pressed); which đã là chủ ngữ (which is located).'},
+  PREP:        {g:'Gộp câu',   label:'Chọn sai giới từ', vn:'Giới từ đi theo động từ trong câu gốc: dampened BY, applied TO, transferred ONTO, fed BETWEEN, passes OVER.'}
 };
 
 /* =====================================================================
@@ -228,7 +256,7 @@ const GAMES = [
  { id:'E', cat:'Gộp câu', title:'Combine the Steps', step:'Step 3 · Passive', skill:'Create – gộp câu', time:'3′',
    desc:'Gộp hai câu bị động (hai bước đã gom ở outline) thành một câu phức, dùng đúng công cụ nối được giao.',
    pattern:['S1, <b>after which</b> S2 – <i>…dampened by rollers, after which ink is applied to it.</i>','N, <b>which</b> + V – <i>…the blanket cylinder, which is located below.</i>','nơi chốn, <b>where</b> + mệnh đề – <i>…between the cylinders, where it is pressed.</i>','<b>before/after being</b> + V3 – <i>…before being dried.</i>'],
-   traps:['CMB_TOOL','CMB_PRONOUN','TM_BEING'],
+   traps:['CMB_TOOL','CMB_PRONOUN','TM_BEING','PREP'],
    talk:['Câu nào trong bài của em sẽ dùng "after which"?','"where" khác "which" ở điểm nào?'] },
  { id:'D', cat:'Time markers', title:'Marker Chain', step:'Step 3 · Time markers', skill:'Analyse – trình tự & liên kết', time:'4′',
    desc:'Xếp 4 câu của Body 2 theo đúng trình tự máy in, rồi gắn time marker phù hợp. Mỗi marker dùng một lần.',
@@ -254,6 +282,7 @@ const sleep = ms => new Promise(r=>setTimeout(r,ms));
 function toast(msg){ const t=document.createElement('div'); t.className='toast'; t.textContent=msg; document.body.appendChild(t); setTimeout(()=>t.remove(),1800); }
 function lockStage(){ $$('#stage button, #stage .chip, #stage .seg, #stage .slot, #stage .bin').forEach(e=>e.style.pointerEvents='none'); }
 function flash(el, ok){ if(!el) return; el.classList.add(ok?'okf':'ngf'); }
+function layout(wide){ app.classList.toggle('wide', !!wide); window.scrollTo(0,0); }
 
 /* =====================================================================
    ROUTER
@@ -271,6 +300,7 @@ window.addEventListener('hashchange', route);
 
 /* ---------- login ---------- */
 function renderLogin(){
+  layout(false);
   app.innerHTML = `
   <div class="mast"><div><div class="gname">Print Shop Games</div><div class="muted" style="margin-top:6px">${esc(CONFIG.lessonTitle)}</div></div></div>
   <div class="card" style="max-width:520px">
@@ -286,6 +316,7 @@ function renderLogin(){
 /* ---------- hub ---------- */
 function renderHub(){
   const done = Object.keys(S.results).length;
+  layout(false);
   app.innerHTML = `
   <div class="mast">
     <div><div class="gname">Print Shop Games</div><div class="muted" style="margin-top:6px">${esc(CONFIG.lessonTitle)}</div></div>
@@ -317,13 +348,14 @@ function renderHub(){
 function startGame(id){
   const g = GAMES.find(x=>x.id===id); if(!g){ location.hash=''; return; }
   const run = { game:g, items:[], total:0 };
+  layout(true);
   app.innerHTML = `
   <div class="mast">
     <div><div class="gname">${g.title}</div><div class="muted" style="margin-top:6px">${g.step} · ${g.skill}</div></div>
     <div class="meta">${esc(S.name)}<br><a href="#" id="quit" class="muted" style="font-weight:500">← Về xưởng</a></div>
   </div>
   <div class="press"><div class="cyl"></div><div class="strip"><i style="width:0"></i></div><div class="cyl"></div><div class="count" id="cnt">0</div></div>
-  <div id="stage"></div>`;
+  <div class="split"><aside class="fig" id="fig"></aside><div id="stage"></div></div>`;
   $('#quit').onclick = e => { e.preventDefault(); location.hash=''; };
   const api = {
     root: $('#stage'),
@@ -331,8 +363,11 @@ function startGame(id){
     record(ok, code, prompt, given, expected){ if(run.dead) return; run.items.push({ok, code: ok?null:code, cat:(code&&ERR[code])?ERR[code].g:g.cat, prompt, given, expected}); api.progress(); },
     alive(){ return !run.dead; },
     progress(){ if(run.dead) return; const d=run.items.length, t=run.total||1; $('.strip i').style.width = Math.min(100, d/t*100)+'%'; $('#cnt').textContent = run.items.filter(i=>i.ok).length + ' ✓'; },
+    // left half of the screen: the picture for this round / item
+    figure(svg, cap){ const f=$('#fig'); if(run.dead||!f) return; f.innerHTML = (cap?`<div class="cap">${esc(cap)}</div>`:'') + svg; },
     finish(){ if(!run.dead) finishGame(run); }
   };
+  api.figure(lithoSVG(), LITHO_CAP);
   const kill = () => { run.dead = true; window.removeEventListener('hashchange', kill); };
   setTimeout(()=>window.addEventListener('hashchange', kill),0);
   GAME_RUNNERS[id](api);
@@ -380,6 +415,7 @@ function renderSummary(g, res){
   const groups = groupErrors(res.items);
   const acc = accuracyByGroup(res.items);
   const date = new Date().toLocaleDateString('vi-VN',{weekday:'long',day:'2-digit',month:'2-digit',year:'numeric'});
+  layout(false);
   app.innerHTML = `
   <div class="paper">
     <div class="masthead"><div class="title">The Daily Error Report</div></div>
@@ -435,6 +471,7 @@ function renderLessonReport(){
   const allItems = list.flatMap(r=>r.items||[]);
   const score = list.reduce((a,r)=>a+r.score,0), total = list.reduce((a,r)=>a+r.total,0);
   const groups = groupErrors(allItems).slice(0,6);
+  layout(false);
   app.innerHTML = `
   <div class="paper">
     <div class="masthead"><div class="title">The Daily Error Report</div></div>
@@ -463,6 +500,7 @@ function renderLessonReport(){
    TEACHER DASHBOARD  (open index.html#teacher)
    ===================================================================== */
 async function renderDashboard(){
+  layout(false);
   app.innerHTML = `
   <div class="mast"><div><div class="gname">Teacher Desk</div><div class="muted" style="margin-top:6px">${esc(CONFIG.lessonTitle)}</div></div>
   <div class="meta"><a href="#" id="back" class="muted">← Về xưởng</a></div></div>
@@ -500,7 +538,7 @@ async function buildDash(){
     <div class="dateline"><span>${students.length} học sinh</span><span>${rows.length} lượt nộp</span><span>${new Date().toLocaleTimeString('vi-VN')}</span></div>
     <div class="cols">
       <div><h3>Lỗi cả lớp mắc nhiều nhất</h3>
-        ${topErr.slice(0,10).map(([c,n])=>`<div class="bar"><div class="lab"><span><b>${esc(ERR[c]?.label||c)}</b> <span class="muted">· ${esc(ERR[c]?.g||'')}</span></span><span>${n}</span></div><div class="tr"><i style="width:${n/maxE*100}%;background:var(--m)"></i></div><div class="vn" style="font-size:13px;margin-top:3px">${esc(ERR[c]?.vn||'')}</div></div>`).join('') || '<p>Không có lỗi.</p>'}
+        ${topErr.slice(0,10).map(([c,n])=>`<div class="bar"><div class="lab"><span><b>${esc(ERR[c]?.label||c)}</b> <span class="muted">· ${esc(ERR[c]?.g||'')}</span></span><span>${n}</span></div><div class="tr"><i style="width:${n/maxE*100}%;background:var(--rose)"></i></div><div class="vn" style="font-size:13px;margin-top:3px">${esc(ERR[c]?.vn||'')}</div></div>`).join('') || '<p>Không có lỗi.</p>'}
       </div>
       <div><h3>Theo từng game</h3>
         ${GAMES.map(g=>{const rs=rows.filter(r=>r.game===g.id); if(!rs.length) return ''; const s=rs.reduce((a,r)=>a+r.score,0), t=rs.reduce((a,r)=>a+r.total,0); const p=t?Math.round(s/t*100):0; return `<div class="bar"><div class="lab"><span>${g.id} · ${g.title} <span class="muted">(${rs.length} HS)</span></span><span>${p}%</span></div><div class="tr"><i style="width:${p}%"></i></div></div>`;}).join('')}
@@ -528,13 +566,13 @@ GAME_RUNNERS.A = async function(api){
         ['5 · Order is accepted',1],['6 · Food is cooked',1],['7 · Food is packed',1],
         ['8 · Driver is assigned',2],['9 · Food is picked up',2],['10 · Food is delivered',2],['11 · Food is received',2]],
       names:[['Ordering','ok'],['Preparing','ok'],['Delivering','ok'],['Using the app','STG_NAME'],['Cooking','STG_NAME']],
-      answers:['Ordering','Preparing','Delivering'] },
-    { title:'Vòng 2 · Máy in lithography', cards: LITHO_STEPS.map(s=>[s.n+' · '+s.t, s.n<=3?0:s.n<=5?1:2]),
+      answers:['Ordering','Preparing','Delivering'], fig:GRAB_SVG, cap:'Ordering food on Grab Food' },
+    { title:'Vòng 2 · Máy in lithography', fig:lithoSVG(), cap:LITHO_CAP, cards: LITHO_STEPS.map(s=>[s.n+' · '+s.t, s.n<=3?0:s.n<=5?1:2]),
       names:[['Inking the cylinder','ok'],['Printing the image onto paper','ok'],['Drying the paper','ok'],['Using rollers','GRP_EQUIP'],['Using cylinders','GRP_EQUIP']],
       answers:['Inking the cylinder','Printing the image onto paper','Drying the paper'] }
   ];
   api.setTotal(rounds.reduce((a,r)=>a+r.cards.length+3,0));
-  for(const rd of rounds){ await new Promise(res => playSortRound(api, rd, res)); }
+  for(const rd of rounds){ api.figure(rd.fig, rd.cap); await new Promise(res => playSortRound(api, rd, res)); }
   api.finish();
 };
 function playSortRound(api, rd, done){
@@ -594,10 +632,10 @@ GAME_RUNNERS.B = async function(api){
   for(const p of pairs){
     await new Promise(done => {
       const reasons = shuffle(p.reasons); let v=null, r=null;
+      api.figure(lithoSVG([p.a, p.b]), LITHO_CAP);
       const draw = () => {
         api.root.innerHTML = `
-        <div class="svgbox"><div class="chain">${LITHO_STEPS.map((s,i)=>`${i?'<span class="ln"></span>':''}<span class="n ${s.n===p.a||s.n===p.b?'on':''}">${s.n}</span>`).join('')}</div>
-          <div class="row"><div class="card" style="flex:1"><b>Step ${p.a}</b><br>${esc(LITHO_STEPS[p.a-1].t)}</div><div class="card" style="flex:1"><b>Step ${p.b}</b><br>${esc(LITHO_STEPS[p.b-1].t)}</div></div></div>
+        <div class="row"><div class="card" style="flex:1"><b>Step ${p.a}</b><br>${esc(LITHO_STEPS[p.a-1].t)}</div><div class="card" style="flex:1"><b>Step ${p.b}</b><br>${esc(LITHO_STEPS[p.b-1].t)}</div></div>
         <div class="q">1. Kết luận</div>
         <div class="col">${V.map((t,i)=>`<button class="btn ${v===i?'sel':''}" data-v="${i}">${t}</button>`).join('')}</div>
         <div class="q">2. Lý do</div>
@@ -657,7 +695,7 @@ GAME_RUNNERS.F = async function(api){
     if(!api.alive()) break; // student left mid-word: the chute is gone
     const ok = given===suf;
     el.getAnimations().forEach(a=>a.pause());
-    el.style.background = ok ? 'var(--ok)' : 'var(--ng)'; el.style.color = '#fff';
+    el.style.background = ok ? 'var(--ok-bg)' : 'var(--ng-bg)'; el.style.borderColor = ok ? 'var(--ok)' : 'var(--ng)';
     const binLabel = s => s==='timeout' ? '(hết giờ)' : BINS.find(b=>b[0]===s)[1];
     const code = (root && given==='same') ? 'NOM_ROOT' : 'NOM_SUFFIX';
     api.record(ok, code, v, binLabel(given), `${binLabel(suf)} → the ${noun}`);
@@ -671,34 +709,35 @@ GAME_RUNNERS.F = async function(api){
 
 /* ---------- G · NOUN PHRASE BUILDER ---------- */
 GAME_RUNNERS.G = async function(api){
+  // a = the answer as phrase tiles (prepositions are tiles of their own); d = distractors [tile, kind]; st = steps on the diagram
   const items = [
-    {s:'The cylinder is inked by the ink rollers.', a:'the inking of the cylinder', d:[['ink','root'],['by','by'],['rollers','by']]},
-    {s:'The cylinder is dampened by a set of rollers.', a:'the dampening of the cylinder', d:[['dampen','verb'],['damp','root'],['by','by']]},
-    {s:'The image is transferred onto the blanket cylinder.', a:'the transfer of the image', d:[['transferred','verb'],['is','verb'],['a','art']]},
-    {s:'Paper is fed between the two cylinders.', a:'the feeding of the paper', d:[['fed','verb'],['feed','verb'],['by','by']]},
-    {s:'The paper is pressed by the impression cylinder.', a:'the pressing of the paper', d:[['pressure','root'],['press','verb'],['by','by']]},
-    {s:'The printed paper is dried by hot and cold air.', a:'the drying of the printed paper', d:[['dry','suffix'],['dried','verb'],['by','by'],['air','by']]}
+    {s:'The cylinder is inked by the ink rollers.', a:['the inking','of','the cylinder'], st:[3], d:[['the ink','root'],['by','by'],['the ink rollers','by']]},
+    {s:'The cylinder is dampened by a set of rollers.', a:['the dampening','of','the cylinder'], st:[2], d:[['the dampen','verb'],['dampening','art'],['by','by']]},
+    {s:'The image is transferred onto the blanket cylinder.', a:['the transfer','of','the image'], st:[4], d:[['the transferred','verb'],['onto','detail'],['the blanket cylinder','detail']]},
+    {s:'Paper is fed between the two cylinders.', a:['the feeding','of','the paper'], st:[5], d:[['the fed','verb'],['between','detail'],['the two cylinders','detail']]},
+    {s:'The paper is pressed by the impression cylinder.', a:['the pressing','of','the paper'], st:[5], d:[['the pressure','root'],['by','by'],['the impression cylinder','by']]},
+    {s:'The printed paper is dried by hot and cold air.', a:['the drying','of','the printed paper'], st:[6], d:[['the dry','suffix'],['the dried','verb'],['by','by'],['hot and cold air','by']]}
   ];
-  const classify = (given, exp, tiles) => {
+  const KIND_CODE = [['by','NOM_BY'],['detail','OV_DETAIL'],['root','NOM_ROOT'],['suffix','NOM_SUFFIX'],['verb','NOM_VERB'],['art','NOM_ARTICLE']];
+  const classify = (used, exp) => {
+    const given = used.map(t=>t.t);
     if(given.join(' ')===exp.join(' ')) return null;
-    const used = tiles.filter(t=>given.includes(t.t)&&t.k).map(t=>t.k);
-    if(used.includes('by')) return 'NOM_BY';
-    if(used.includes('root')) return 'NOM_ROOT';
-    if(used.includes('suffix')) return 'NOM_SUFFIX';
-    if(used.includes('verb')) return 'NOM_VERB';
-    if(given[0]!=='the' || used.includes('art')) return 'NOM_ARTICLE';
+    const kinds = used.filter(t=>t.k).map(t=>t.k);
+    const hit = KIND_CODE.find(([k])=>kinds.includes(k));
+    if(hit) return hit[1];
     if(!given.includes('of')) return 'NOM_OF';
     return 'NOM_ORDER';
   };
   api.setTotal(items.length);
   for(const it of items){
+    api.figure(lithoSVG(it.st), LITHO_CAP);
     await new Promise(done=>{
-      const exp = it.a.split(' ');
+      const exp = it.a;
       const tiles = shuffle(exp.map((t,i)=>({id:'a'+i,t,k:null})).concat(it.d.map((x,i)=>({id:'d'+i,t:x[0],k:x[1]}))));
       let line = [];
       const draw = () => {
         api.root.innerHTML = `
-          <div class="hint">Biến câu bị động thành <b>cụm danh từ</b> để dùng trong Overview. Không phải thẻ nào cũng cần dùng.</div>
+          <div class="hint">Biến câu bị động thành <b>cụm danh từ</b> để dùng trong Overview. Giới từ là thẻ riêng. Không phải thẻ nào cũng cần dùng.</div>
           <div class="prompt">${esc(it.s)}</div>
           <div class="answerline" id="line">${line.map(id=>{const t=tiles.find(x=>x.id===id);return `<span class="chip" data-out="${id}">${esc(t.t)}</span>`;}).join('') || '<span class="muted">Bấm thẻ bên dưới để ghép…</span>'}</div>
           <div>${tiles.map(t=>`<span class="chip ${line.includes(t.id)?'ghost':''}" data-in="${t.id}">${esc(t.t)}</span>`).join('')}</div>
@@ -707,10 +746,10 @@ GAME_RUNNERS.G = async function(api){
         $$('[data-out]').forEach(el=>el.onclick=()=>{line=line.filter(x=>x!==el.dataset.out);draw();});
         $('#chk').onclick = async () => {
           lockStage();
-          const given = line.map(id=>tiles.find(x=>x.id===id).t);
-          const code = classify(given, exp, tiles);
-          $('#line').classList.add(code?'ngf':'okf'); $('#line').style.background = code?'#FBE3EC':'#E3F5EA';
-          api.record(!code, code, it.s, given.join(' '), it.a);
+          const used = line.map(id=>tiles.find(x=>x.id===id));
+          const code = classify(used, exp);
+          $('#line').classList.add(code?'ngf':'okf'); $('#line').style.background = code?'var(--ng-bg)':'var(--ok-bg)';
+          api.record(!code, code, it.s, used.map(t=>t.t).join(' '), exp.join(' '));
           await sleep(900); done();
         };
       };
@@ -720,27 +759,60 @@ GAME_RUNNERS.G = async function(api){
   api.finish();
 };
 
-/* ---------- H · OVERVIEW BUILDER ---------- */
+/* =====================================================================
+   FIGURES – left half of each game screen. Black & white line drawings;
+   the steps being discussed are marked with --mark (lithoSVG([4,5])).
+   ===================================================================== */
+const LITHO_CAP = 'Newspaper printing by lithography';
+const ARROW = id => `<defs><marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path class="arw" d="M0 0L10 5L0 10z"/></marker></defs>`;
+function lithoSVG(on){
+  on = on || [];
+  const part = (n, body) => `<g${on.includes(n)?' class="on"':''}>${body}</g>`;
+  const badge = (n, x, y) => `<g class="badge${on.includes(n)?' on':''}"><circle cx="${x}" cy="${y}" r="11"/><text x="${x}" y="${y+4}">${n}</text></g>`;
+  const roller = (x, y) => `<circle class="fl" cx="${x}" cy="${y}" r="13"/>`;
+  return `<svg class="dg" viewBox="0 0 560 400" role="img" aria-label="${LITHO_CAP}">${ARROW('lt-ar')}
+    ${part(2, roller(160,65) + roller(141,47))}
+    ${part(3, roller(260,65) + roller(279,47) + roller(298,29))}
+    ${part(1, '<circle class="fl" cx="210" cy="115" r="58"/>')}
+    ${part(4, '<circle class="fl" cx="210" cy="225" r="52"/>')}
+    ${part(5, '<circle class="fl" cx="210" cy="337" r="50"/>')}
+    ${part(6, '<rect class="fl" x="385" y="248" width="62" height="68" rx="4"/><rect class="fl" x="460" y="248" width="62" height="68" rx="4"/>')}
+    <circle class="fl" cx="300" cy="291" r="7"/><circle class="fl" cx="330" cy="291" r="7"/><circle class="fl" cx="360" cy="291" r="7"/>
+    <path class="web" d="M24 282H546" marker-end="url(#lt-ar)"/>
+    <text class="in" x="210" y="119">cylinder 1</text>
+    <text class="in" x="210" y="222">blanket</text><text class="in" x="210" y="238">cylinder</text>
+    <text class="in" x="210" y="334">impression</text><text class="in" x="210" y="350">cylinder</text>
+    <text class="in" x="416" y="306">hot air</text><text class="in" x="491" y="306">cold air</text>
+    <text class="lab" x="18" y="30">dampening rollers</text>
+    <text class="lab" x="318" y="33">ink rollers</text>
+    <text class="lab" x="28" y="272">paper</text>
+    <text class="lab" x="556" y="338" text-anchor="end">printed newspaper</text>
+    ${badge(1,128,132)}${badge(2,118,74)}${badge(3,305,70)}${badge(4,134,220)}${badge(5,136,345)}${badge(6,453,236)}
+  </svg>`;
+}
+const GRAB_SVG = `<svg class="dg" viewBox="0 0 560 230" role="img" aria-label="Ordering food on Grab Food">${ARROW('gr-ar')}
+  <rect class="fl" x="40" y="50" width="62" height="110" rx="10"/><rect class="soft" x="48" y="62" width="46" height="80" rx="3"/><circle class="ln" cx="71" cy="151" r="4"/>
+  <path class="fl" d="M170 85L225 55L280 85Z"/><rect class="fl" x="178" y="85" width="94" height="75"/><rect class="soft" x="213" y="120" width="24" height="40"/>
+  <rect class="soft" x="318" y="104" width="26" height="22"/><path class="ln" d="M330 148L350 120H380L390 148M380 120L388 104H398"/>
+  <circle class="fl" cx="330" cy="148" r="12"/><circle class="fl" cx="390" cy="148" r="12"/>
+  <path class="fl" d="M450 92L490 62L530 92Z"/><rect class="fl" x="458" y="92" width="64" height="68"/><rect class="soft" x="482" y="125" width="16" height="35"/>
+  <g class="lab" text-anchor="middle"><text x="71" y="182">app</text><text x="225" y="182">restaurant</text><text x="360" y="182">driver</text><text x="490" y="182">customer</text></g>
+  <path class="dash" d="M60 205H515" marker-end="url(#gr-ar)"/>
+</svg>`;
 const MINI = {
-  frog: `<svg viewBox="0 0 520 235" width="100%" style="max-width:520px;display:block;margin:auto" font-family="Be Vietnam Pro" font-size="14">
-    <defs><marker id="ar" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#161616"/></marker></defs>
-    <text x="260" y="18" text-anchor="middle" font-weight="800">The life cycle of a frog</text>
-    <g fill="#fff" stroke="#161616" stroke-width="2"><circle cx="260" cy="62" r="33"/><circle cx="410" cy="128" r="33"/><circle cx="260" cy="196" r="33"/><circle cx="110" cy="128" r="33"/></g>
-    <g text-anchor="middle"><text x="260" y="67">eggs</text><text x="410" y="133">tadpole</text><text x="260" y="201">froglet</text><text x="110" y="133">adult</text></g>
-    <g stroke="#161616" stroke-width="2" fill="none" marker-end="url(#ar)"><path d="M293 66 Q370 72 398 96"/><path d="M402 160 Q370 196 295 198"/><path d="M226 198 Q150 196 118 161"/><path d="M122 96 Q150 64 226 60"/></g></svg>`,
-  concrete: `<svg viewBox="0 0 560 200" width="100%" style="max-width:560px;display:block;margin:auto" font-family="Be Vietnam Pro" font-size="13">
-    <defs><marker id="ar2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10z" fill="#161616"/></marker></defs>
-    <text x="280" y="18" text-anchor="middle" font-weight="800">Cement production → Concrete production</text>
-    <g fill="#fff" stroke="#161616" stroke-width="2"><rect x="10" y="40" width="90" height="36"/><rect x="125" y="40" width="80" height="36"/><rect x="230" y="40" width="80" height="36"/><rect x="335" y="40" width="80" height="36"/><rect x="440" y="40" width="80" height="36" fill="#FFF7D1"/>
-    <rect x="130" y="140" width="150" height="36"/><rect x="310" y="140" width="110" height="36"/><rect x="445" y="140" width="80" height="36" fill="#FFF7D1"/></g>
-    <g text-anchor="middle"><text x="55" y="63">limestone, clay</text><text x="165" y="63">crusher</text><text x="270" y="63">heater</text><text x="375" y="63">grinder</text><text x="480" y="63">cement</text>
-    <text x="205" y="163">cement, sand, gravel, water</text><text x="365" y="163">mixer</text><text x="485" y="163">concrete</text></g>
-    <g stroke="#161616" stroke-width="2" fill="none" marker-end="url(#ar2)"><path d="M100 58H123"/><path d="M205 58H228"/><path d="M310 58H333"/><path d="M415 58H438"/><path d="M480 76 V110 H205 V138"/><path d="M280 158H308"/><path d="M420 158H443"/></g></svg>`,
-  litho: `<svg viewBox="0 0 560 150" width="100%" style="max-width:560px;display:block;margin:auto" font-family="Be Vietnam Pro" font-size="13">
-    <text x="280" y="18" text-anchor="middle" font-weight="800">Newspaper printing by lithography</text>
-    ${[1,2,3,4,5,6].map((n,i)=>`<circle cx="${50+i*92}" cy="70" r="22" fill="${n<=3?'#FBE3EC':n<=5?'#E3F5FC':'#FFF7D1'}" stroke="#161616" stroke-width="2"/><text x="${50+i*92}" y="75" text-anchor="middle" font-weight="800">${n}</text>${i?`<line x1="${50+i*92-70}" y1="70" x2="${50+i*92-24}" y2="70" stroke="#161616" stroke-width="2"/>`:''}`).join('')}
-    <g text-anchor="middle" font-size="12"><text x="50" y="112">cylinder</text><text x="142" y="112">dampening</text><text x="234" y="112">ink rollers</text><text x="326" y="112">blanket</text><text x="418" y="112">impression</text><text x="510" y="112">dryers</text></g></svg>`
+  frog: `<svg class="dg" viewBox="0 0 520 250" role="img" aria-label="The life cycle of a frog">${ARROW('fr-ar')}
+    <circle class="fl" cx="260" cy="52" r="33"/><circle class="fl" cx="410" cy="125" r="33"/><circle class="fl" cx="260" cy="198" r="33"/><circle class="fl" cx="110" cy="125" r="33"/>
+    <g text-anchor="middle" font-size="14"><text x="260" y="57">eggs</text><text x="410" y="130">tadpole</text><text x="260" y="203">froglet</text><text x="110" y="130">adult</text></g>
+    <g class="ln" marker-end="url(#fr-ar)"><path d="M293 56Q370 62 398 93"/><path d="M402 157Q370 196 295 200"/><path d="M226 200Q150 196 118 158"/><path d="M122 93Q150 54 226 50"/></g></svg>`,
+  concrete: `<svg class="dg" viewBox="0 0 560 190" role="img" aria-label="Cement production and concrete production">${ARROW('cc-ar')}
+    <rect class="fl" x="10" y="30" width="90" height="36"/><rect class="fl" x="125" y="30" width="80" height="36"/><rect class="fl" x="230" y="30" width="80" height="36"/><rect class="fl" x="335" y="30" width="80" height="36"/><rect class="soft" x="440" y="30" width="80" height="36"/>
+    <rect class="fl" x="130" y="130" width="150" height="36"/><rect class="fl" x="310" y="130" width="110" height="36"/><rect class="soft" x="445" y="130" width="80" height="36"/>
+    <g text-anchor="middle" font-size="13"><text x="55" y="53">limestone, clay</text><text x="165" y="53">crusher</text><text x="270" y="53">heater</text><text x="375" y="53">grinder</text><text x="480" y="53">cement</text>
+    <text x="205" y="153">cement, sand, gravel, water</text><text x="365" y="153">mixer</text><text x="485" y="153">concrete</text></g>
+    <g class="ln" marker-end="url(#cc-ar)"><path d="M100 48H123"/><path d="M205 48H228"/><path d="M310 48H333"/><path d="M415 48H438"/><path d="M480 66V100H205V128"/><path d="M280 148H308"/><path d="M420 148H443"/></g></svg>`
 };
+
+/* ---------- H · OVERVIEW BUILDER ---------- */
 GAME_RUNNERS.H = async function(api){
   const TYPES = ['Tuyến tính (linear)','Chu kỳ (cyclical)','Hai quy trình (two processes)'];
   const FRAMES = [
@@ -758,7 +830,7 @@ GAME_RUNNERS.H = async function(api){
       slots:[ [['the production of cement',null],['the produce of cement','NOM_SUFFIX'],['producing cement','NOM_PARALLEL']],
               [['the making of concrete',null],['make concrete','NOM_VERB'],['making of concrete','NOM_ARTICLE']] ],
       final:'Overall, the production of concrete involves two separate processes, the production of cement and the making of concrete, which are combined at the final stage.' },
-    { svg:MINI.litho, T:'Newspaper printing by lithography', type:0, count:3, frame:0,
+    { svg:lithoSVG(), T:'Newspaper printing by lithography', type:0, count:3, frame:0,
       slots:[ [['the inking of a printing cylinder',null],['ink a printing cylinder','NOM_VERB'],['the use of dampening and ink rollers','OV_DETAIL']],
               [['the transfer of the image onto paper',null],['transferring the image onto paper','NOM_PARALLEL'],['transfer of the image onto paper','NOM_ARTICLE']],
               [['the drying of the printed sheets',null],['the dry of the printed sheets','NOM_SUFFIX'],['the sheets are dried','NOM_PARALLEL']] ],
@@ -766,6 +838,7 @@ GAME_RUNNERS.H = async function(api){
   ];
   api.setTotal(rounds.reduce((a,r)=>a+3+r.slots.length,0));
   for(const [ri,rd] of rounds.entries()){
+    api.figure(rd.svg, rd.T);
     await new Promise(done=>{
       const sel = {type:null,count:null,frame:null,slots:rd.slots.map(()=>null)};
       const opts = rd.slots.map(s=>shuffle(s));
@@ -773,7 +846,6 @@ GAME_RUNNERS.H = async function(api){
         const ready = sel.type!==null && sel.count!==null && sel.frame!==null && !sel.slots.includes(null);
         api.root.innerHTML = `
           <h2 class="serif">Vòng ${ri+1}/3${ri===2?' · Đề của chúng ta':''}</h2>
-          <div class="svgbox">${rd.svg}</div>
           <div class="q">1. Đây là loại quy trình nào?</div><div class="row">${TYPES.map((t,i)=>`<button class="btn small ${sel.type===i?'sel':''}" data-type="${i}">${t}</button>`).join('')}</div>
           <div class="q">2. Có mấy stage (hoặc mấy quy trình)?</div><div class="row">${[2,3,4,5].map(n=>`<button class="btn small ${sel.count===n?'sel':''}" data-count="${n}">${n}</button>`).join('')}</div>
           <div class="q">3. Chọn khung Overview</div><div class="col">${FRAMES.map((f,i)=>`<button class="btn small ${sel.frame===i?'sel':''}" data-frame="${i}">${esc(f.replace(/^T /, rd.T+' ').replace(/ n stages/,' [n] stages'))}</button>`).join('')}</div>
@@ -794,7 +866,7 @@ GAME_RUNNERS.H = async function(api){
           api.record(okF,'OV_FRAME',rd.T+': khung',FRAMES[sel.frame].slice(0,48)+'…',FRAMES[rd.frame].slice(0,48)+'…');
           opts.forEach((o,si)=>{ const pick=o[sel.slots[si]]; const ok=pick[1]===null; flash($(`[data-slot="${si}"][data-o="${sel.slots[si]}"]`),ok);
             api.record(ok,pick[1],rd.T+': chỗ trống '+(si+1),pick[0],rd.slots[si][0][0]); });
-          $('#model').innerHTML = `<div class="card" style="margin-top:16px;border-left:8px solid var(--y)"><b>Overview mẫu</b><br>${esc(rd.final)}</div><div class="row" style="margin-top:12px"><button class="btn primary" id="nx">${ri<2?'Vòng tiếp →':'Xem kết quả →'}</button></div>`;
+          $('#model').innerHTML = `<div class="card" style="margin-top:16px;border-left:4px solid var(--y)"><b>Overview mẫu</b><br>${esc(rd.final)}</div><div class="row" style="margin-top:12px"><button class="btn primary" id="nx">${ri<2?'Vòng tiếp →':'Xem kết quả →'}</button></div>`;
           $('#nx').style.pointerEvents='auto'; $('#nx').onclick = done;
         };
       };
@@ -808,26 +880,27 @@ GAME_RUNNERS.H = async function(api){
 GAME_RUNNERS.C = async function(api){
   // seg = chunks; e = index of wrong chunk (-1 = sentence is correct); fix = options, f = right option; c = error code
   const items = [
-    {seg:['The cylinder','dampened','by a set of rollers.'], e:1, fix:['is dampened','dampening','was dampened'], f:0, c:'PAS_BE'},
-    {seg:['Next, the image','is transferred','onto the blanket cylinder.'], e:-1},
-    {seg:['The paper','is feeded','between the two cylinders.'], e:1, fix:['is fed','is feeding','feeds'], f:0, c:'PAS_V3'},
-    {seg:['The printed image','is appeared','on the paper.'], e:1, fix:['appears','is appearing','was appeared'], f:0, c:'PAS_INTRANS'},
-    {seg:['The ink rollers','is located','directly above the cylinder.'], e:1, fix:['are located','is locating','located'], f:0, c:'PAS_AGREE'},
-    {seg:['The printed paper','passes','over a series of small rollers.'], e:-1},
-    {seg:['At last,','the paper is dried','by hot and cold air.'], e:0, fix:['Finally,','At the end,','Lastly of all,'], f:0, c:'TM_ATLAST'},
-    {seg:['After,','ink','is applied to the cylinder.'], e:0, fix:['After that,','After this step is,','Afterward of this,'], f:0, c:'TM_AFTER'},
-    {seg:['After dampened,','the cylinder','is coated with ink.'], e:0, fix:['After being dampened,','After dampen,','After it dampened,'], f:0, c:'TM_BEING'},
-    {seg:['The process begins with','load','the paper onto the first cylinder.'], e:1, fix:['the loading of','loaded','loads'], f:0, c:'NOM_VERB'},
-    {seg:['The second stage is','transfer','of the image onto paper.'], e:1, fix:['the transfer','transferring','to transfer'], f:0, c:'NOM_ARTICLE'},
-    {seg:['The final stage is','the dry','of the printed sheets.'], e:1, fix:['the drying','the dried','the dryness'], f:0, c:'NOM_SUFFIX'},
-    {seg:['Once the cylinder has been inked,','the image','is transferred to the blanket cylinder.'], e:-1},
-    {seg:['The paper','was pressed','firmly against the impression cylinder.'], e:1, fix:['is pressed','is pressing','pressed'], f:0, c:'PAS_TENSE'},
-    {seg:['This cylinder is then dampened,','after which','ink is applied to it.'], e:-1},
-    {seg:['In the final stage,','the paper','is dried by hot and then cold air.'], e:-1}
+    {seg:['The cylinder','dampened','by a set of rollers.'], e:1, fix:['is dampened','dampening','was dampened'], f:0, c:'PAS_BE', st:[2]},
+    {seg:['Next, the image','is transferred','onto the blanket cylinder.'], e:-1, st:[4]},
+    {seg:['The paper','is feeded','between the two cylinders.'], e:1, fix:['is fed','is feeding','feeds'], f:0, c:'PAS_V3', st:[5]},
+    {seg:['The printed image','is appeared','on the paper.'], e:1, fix:['appears','is appearing','was appeared'], f:0, c:'PAS_INTRANS', st:[5]},
+    {seg:['The ink rollers','is located','directly above the cylinder.'], e:1, fix:['are located','is locating','located'], f:0, c:'PAS_AGREE', st:[3]},
+    {seg:['The printed paper','passes','over a series of small rollers.'], e:-1, st:[6]},
+    {seg:['At last,','the paper is dried','by hot and cold air.'], e:0, fix:['Finally,','At the end,','Lastly of all,'], f:0, c:'TM_ATLAST', st:[6]},
+    {seg:['After,','ink','is applied to the cylinder.'], e:0, fix:['After that,','After this step is,','Afterward of this,'], f:0, c:'TM_AFTER', st:[3]},
+    {seg:['After dampened,','the cylinder','is coated with ink.'], e:0, fix:['After being dampened,','After dampen,','After it dampened,'], f:0, c:'TM_BEING', st:[2,3]},
+    {seg:['The process begins with','load','the paper onto the first cylinder.'], e:1, fix:['the loading of','loaded','loads'], f:0, c:'NOM_VERB', st:[1]},
+    {seg:['The second stage is','transfer','of the image onto paper.'], e:1, fix:['the transfer','transferring','to transfer'], f:0, c:'NOM_ARTICLE', st:[4,5]},
+    {seg:['The final stage is','the dry','of the printed sheets.'], e:1, fix:['the drying','the dried','the dryness'], f:0, c:'NOM_SUFFIX', st:[6]},
+    {seg:['Once the cylinder has been inked,','the image','is transferred to the blanket cylinder.'], e:-1, st:[3,4]},
+    {seg:['The paper','was pressed','firmly against the impression cylinder.'], e:1, fix:['is pressed','is pressing','pressed'], f:0, c:'PAS_TENSE', st:[5]},
+    {seg:['This cylinder is then dampened,','after which','ink is applied to it.'], e:-1, st:[2,3]},
+    {seg:['In the final stage,','the paper','is dried by hot and then cold air.'], e:-1, st:[6]}
   ];
   const list = shuffle(items);
   api.setTotal(list.length);
   for(const [k,it] of list.entries()){
+    api.figure(lithoSVG(it.st), LITHO_CAP);
     await new Promise(done=>{
       const sentence = it.seg.join(' ');
       const right = it.e===-1 ? sentence : it.seg.map((s,i)=>i===it.e?it.fix[it.f]:s).join(' ');
@@ -873,24 +946,26 @@ GAME_RUNNERS.C = async function(api){
 
 /* ---------- E · COMBINE THE STEPS ---------- */
 GAME_RUNNERS.E = async function(api){
+  // a = the answer as phrase tiles (prepositions are tiles of their own); d = distractors [tile, error code]; st = steps on the diagram
   const items = [
-    {s1:'This cylinder is dampened by a set of rollers.', s2:'Ink is applied to it by the ink rollers.', tool:'after which',
-     a:['This cylinder is dampened','by a set of rollers,','after which','ink is applied to it','by the ink rollers.'], d:[['after that','CMB_TOOL'],['it is applied','CMB_PRONOUN']]},
-    {s1:'The image is transferred onto the blanket cylinder.', s2:'The blanket cylinder is located below.', tool:'which',
-     a:['The image is transferred','onto the blanket cylinder,','which','is located below.'], d:[['where','CMB_TOOL'],['it','CMB_PRONOUN']]},
-    {s1:'Paper is fed between the two cylinders.', s2:'The paper is pressed firmly there.', tool:'where',
-     a:['Paper is fed','between the two cylinders,','where','it is pressed firmly.'], d:[['which','CMB_TOOL'],['is pressed firmly.','CMB_PRONOUN']]},
-    {s1:'The paper passes over a series of rollers.', s2:'Then the paper is dried by hot and cold air.', tool:'before being',
-     a:['The paper passes','over a series of rollers','before being','dried by hot and cold air.'], d:[['before','TM_BEING'],['is dried by hot and cold air.','TM_BEING']]}
+    {s1:'This cylinder is dampened by a set of rollers.', s2:'Ink is applied to it by the ink rollers.', tool:'after which', st:[2,3],
+     a:['This cylinder is dampened','by','a set of rollers,','after which','ink is applied','to','it','by','the ink rollers.'], d:[['after that','CMB_TOOL'],['it is applied','CMB_PRONOUN'],['with','PREP']]},
+    {s1:'The image is transferred onto the blanket cylinder.', s2:'The blanket cylinder is located below.', tool:'which', st:[4],
+     a:['The image is transferred','onto','the blanket cylinder,','which','is located below.'], d:[['where','CMB_TOOL'],['it','CMB_PRONOUN'],['into','PREP']]},
+    {s1:'Paper is fed between the two cylinders.', s2:'The paper is pressed firmly there.', tool:'where', st:[5],
+     a:['Paper is fed','between','the two cylinders,','where','it is pressed firmly.'], d:[['which','CMB_TOOL'],['is pressed firmly.','CMB_PRONOUN'],['among','PREP']]},
+    {s1:'The paper passes over a series of rollers.', s2:'Then the paper is dried by hot and cold air.', tool:'before being', st:[6],
+     a:['The paper passes','over','a series of rollers','before being','dried','by','hot and cold air.'], d:[['before','TM_BEING'],['is dried','TM_BEING'],['with','PREP']]}
   ];
   api.setTotal(items.length);
   for(const [k,it] of items.entries()){
+    api.figure(lithoSVG(it.st), LITHO_CAP);
     await new Promise(done=>{
       const tiles = shuffle(it.a.map((t,i)=>({id:'a'+i,t,c:null})).concat(it.d.map((x,i)=>({id:'d'+i,t:x[0],c:x[1]}))));
       let line=[];
       const draw = () => {
         api.root.innerHTML = `
-          <div class="hint">Câu ${k+1}/${items.length}. Gộp hai bước thành <b>một câu</b>, bắt buộc dùng: <b>${esc(it.tool)}</b></div>
+          <div class="hint">Câu ${k+1}/${items.length}. Gộp hai bước thành <b>một câu</b>, bắt buộc dùng: <b>${esc(it.tool)}</b>. Giới từ là thẻ riêng.</div>
           <div class="card" style="margin-bottom:10px">① ${esc(it.s1)}<br>② ${esc(it.s2)}</div>
           <div class="answerline" id="line">${line.map(id=>`<span class="chip" data-out="${id}">${esc(tiles.find(x=>x.id===id).t)}</span>`).join('')||'<span class="muted">Bấm các mảnh câu theo đúng thứ tự…</span>'}</div>
           <div>${tiles.map(t=>`<span class="chip ${line.includes(t.id)?'ghost':''}" data-in="${t.id}">${esc(t.t)}</span>`).join('')}</div>
@@ -904,7 +979,7 @@ GAME_RUNNERS.E = async function(api){
           const ok = given === it.a.join(' ');
           const bad = used.find(t=>t.c);
           const code = ok ? null : (bad ? bad.c : 'CMB_ORDER');
-          $('#line').style.background = ok ? '#E3F5EA' : '#FBE3EC';
+          $('#line').style.background = ok ? 'var(--ok-bg)' : 'var(--ng-bg)';
           api.record(ok, code, it.s1+' + '+it.s2, given, it.a.join(' '));
           await sleep(1000); done();
         };
@@ -929,13 +1004,13 @@ GAME_RUNNERS.D = async function(api){
   api.setTotal(8);
   const st = {sent:[null,null,null,null], mark:[null,null,null,null], picked:null};
   const pool = shuffle(SENT.map((s,i)=>i));
+  api.figure(lithoSVG([4,5,6]), LITHO_CAP);
   await new Promise(done=>{
     const draw = () => {
       const usedS = st.sent.filter(x=>x!==null), usedM = st.mark.filter(x=>x!==null);
       const ready = !st.sent.includes(null) && !st.mark.includes(null);
       api.root.innerHTML = `
         <div class="hint">Đây là 4 câu của <b>Body 2</b> (steps 4–6). Bấm một marker hoặc một câu, rồi bấm vào ô tương ứng để đặt vào. Mỗi marker chỉ dùng một lần.</div>
-        <div class="svgbox"><div class="chain">${LITHO_STEPS.map((s,i)=>`${i?'<span class="ln"></span>':''}<span class="n ${s.n>=4?'on':''}">${s.n}</span>`).join('')}</div></div>
         <div class="q">Kho marker</div><div>${MARKERS.map(m=>`<span class="chip ${usedM.includes(m)?'ghost':''} ${st.picked&&st.picked.m===m?'sel':''}" data-m="${esc(m)}">${esc(m)}</span>`).join('')}</div>
         <div class="q">Kho câu</div><div class="col">${pool.map(i=>`<span class="chip ${usedS.includes(i)?'ghost':''} ${st.picked&&st.picked.s===i?'sel':''}" data-s="${i}">… ${esc(SENT[i])}</span>`).join('')}</div>
         <div class="q" style="margin-top:16px">Body 2</div>
