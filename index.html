@@ -70,6 +70,12 @@ textarea{font-size:14px;min-height:120px}
 .photo img{display:block;width:100%;height:auto;border-radius:6px}
 .fig .photo svg{position:absolute;inset:0;width:100%;height:100%}
 .photo .ring{fill:var(--mark);fill-opacity:.5;stroke:#C29A2E;stroke-width:3;mix-blend-mode:multiply}
+/* key shown right after an answer */
+.keybox{margin-top:14px;display:flex;gap:12px;align-items:center;justify-content:space-between;flex-wrap:wrap;background:var(--ok-bg);border:1px solid var(--ok);border-radius:10px;padding:10px 14px;font-size:16px;line-height:1.5}
+.keybox .kl{display:inline-block;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:var(--ok);margin-right:6px}
+.keyok{box-shadow:0 0 0 2px var(--ok)!important;border-color:var(--ok)!important}
+.key{display:block;font-size:12.5px;font-weight:700;color:var(--ok);margin-top:3px}
+.chip .key{display:inline;margin:0 0 0 6px}
 #stage{min-width:0}
 /* hub */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:16px}
@@ -137,21 +143,6 @@ table{border-collapse:collapse;width:100%;font-size:14px;background:var(--card)}
 th,td{border:1px solid var(--line);padding:6px 8px;text-align:left;vertical-align:top}
 th{background:#F1ECE2}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--k);color:#fff;padding:10px 18px;border-radius:10px;font-weight:600;z-index:9}
-/* diagrams (black & white line drawings; --mark = the step being discussed) */
-.dg text{font-family:var(--sans);fill:var(--ink)}
-.dg .tt{font-size:15px;font-weight:700}
-.dg .lab{font-size:12.5px;fill:var(--ink2)}
-.dg .in{font-size:12px;text-anchor:middle}
-.dg .ln{fill:none;stroke:var(--ink);stroke-width:1.5}
-.dg .fl{fill:var(--card);stroke:var(--ink);stroke-width:1.5}
-.dg .soft{fill:#EFE9DD;stroke:var(--ink);stroke-width:1.2}
-.dg .web{fill:none;stroke:var(--ink2);stroke-width:3}
-.dg .dash{fill:none;stroke:var(--ink2);stroke-width:1.5;stroke-dasharray:6 5}
-.dg .arw{fill:var(--ink)}
-.dg .badge circle{fill:var(--card);stroke:var(--ink);stroke-width:1.3}
-.dg .badge text{font-size:12px;font-weight:800;text-anchor:middle}
-.dg .on .fl,.dg .badge.on circle{fill:var(--mark)}
-.dg .on .fl{stroke-width:2.2}
 @media (max-width:900px){.split{grid-template-columns:1fr}.fig{position:static}}
 @media (max-width:720px){.cols{grid-template-columns:1fr}.bins{grid-template-columns:1fr}.slotrow{grid-template-columns:28px 1fr}.slotrow .slot.s{grid-column:2}.gname{font-size:24px}.paper{padding:16px}.paper .masthead .title{font-size:32px}}
 </style>
@@ -191,8 +182,8 @@ const ERR = {
   GRP_BODY:    {g:'Gom nhóm',  label:'Chia body chưa cân đối', vn:'Body 1 = Stage 1 (steps 1–3); Body 2 = Stage 2 + 3 (steps 4–6).'},
   NOM_VERB:    {g:'Danh từ hoá', label:'Dùng động từ thay vì cụm danh từ', vn:'Sau starting with / followed by / ending with / is → phải là the + N + of + O.'},
   NOM_ARTICLE: {g:'Danh từ hoá', label:'Thiếu mạo từ "the"', vn:'the processing of raw materials – không phải "processing of raw materials".'},
-  NOM_SUFFIX:  {g:'Danh từ hoá', label:'Sai đuôi danh từ', vn:'dry → drying, deliver → delivery, remove → removal, store → storage…'},
-  NOM_ROOT:    {g:'Danh từ hoá', label:'Nhầm danh từ chỉ vật với danh từ chỉ hoạt động', vn:'the heat / the ink = vật; the heating / the inking = quá trình.'},
+  NOM_SUFFIX:  {g:'Danh từ hoá', label:'Sai đuôi danh từ', vn:'dry → drying, apply → application, move → movement, pass → passage…'},
+  NOM_ROOT:    {g:'Danh từ hoá', label:'Nhầm danh từ chỉ vật với danh từ chỉ hoạt động', vn:'the ink / the press = vật; the inking / the pressing = quá trình.'},
   NOM_OF:      {g:'Danh từ hoá', label:'Thiếu "of"', vn:'the transfer of the image – danh từ hoá luôn nối với đối tượng bằng "of".'},
   NOM_BY:      {g:'Danh từ hoá', label:'Giữ tác nhân "by" trong cụm danh từ', vn:'Cụm danh từ ở Overview bỏ tác nhân: the drying of the paper (không cần "by cold and hot dryers").'},
   NOM_PARALLEL:{g:'Danh từ hoá', label:'Các cụm không song song', vn:'Mọi vị trí trong khung Overview đều là the + N + of + O.'},
@@ -232,27 +223,27 @@ const LITHO_STEPS = [
 
 const GAMES = [
  { id:'A', cat:'Stage', title:'Stage Sorter', step:'Step 1 · Task Analysis', skill:'Analyse – phân loại', time:'5′',
-   desc:'Gom các bước nhỏ thành 3 stage và đặt tên cho từng stage. Vòng 1: Grab Food. Vòng 2: máy in lithography.',
+   desc:'Gom 6 bước của máy in lithography thành 3 stage và đặt tên cho từng stage.',
    pattern:['<b>Stage</b> = các bước <b>liền nhau</b> có chung <b>một kết quả</b>.','Process IELTS thường có 2–4 stage, phổ biến nhất là 3.','Lithography: <i>Inking the cylinder</i> (1–3) → <i>Printing the image</i> (4–5) → <i>Drying the paper</i> (6).'],
    traps:['STG_GROUP','STG_NAME','GRP_EQUIP'],
-   talk:['Em dựa vào đâu để cắt stage ở Grab Food? Tiêu chí đó còn dùng được ở máy in không?','Vì sao "Using cylinders" không phải là tên stage tốt?','Có 6 steps và 3 stages – vậy 2 body chia thế nào?'] },
+   talk:['Em dựa vào đâu để cắt stage giữa step 3 và step 4?','Vì sao "Using cylinders" không phải là tên stage tốt?','Có 6 steps và 3 stages – vậy 2 body chia thế nào?'] },
  { id:'B', cat:'Gom nhóm', title:'Group or Split?', step:'Step 2 · Brainstorming', skill:'Evaluate – biện luận', time:'5′',
    desc:'Xét từng cặp bước trên máy in: gom chung, tách riêng, hay không được gom? Chọn đúng cả kết luận lẫn lý do.',
    pattern:['<b>Q1</b> Các bước có đứng liền nhau không? → điều kiện bắt buộc','<b>Q2</b> Sau cụm bước này, cái gì đã "xong"? → chia stage, chia đoạn','<b>Q3</b> Trong stage, bước nào cùng tác động lên một đối tượng? → gộp vào 1 câu'],
    traps:['GRP_SURFACE','GRP_NONADJ','GRP_MERGE','GRP_SPLIT'],
    talk:['Step 1, 4, 5 đều là cylinder – vì sao không gom?','Step 5 và 6 cùng tác động lên tờ giấy – viết chung một câu được không? Có phải một stage không?','Câu hỏi nào trong Q1–Q3 em thấy khó trả lời nhất?'] },
  { id:'F', cat:'Danh từ hoá', title:'Suffix Rush', step:'Step 3 · Nominalisation', skill:'Apply – tự động hoá hình thái', time:'5′',
-   desc:'Động từ rơi xuống – chọn đuôi danh từ đúng trước khi chạm đáy. Trả lời đúng liên tiếp để tăng combo.',
-   pattern:['-tion: production, extraction, filtration, purification','-ment: treatment, development · -al: removal, arrival · -y: delivery · -age: storage, package','-ing: heating, drying, inking, pressing, mixing (bẫy dễ sai nhất)','Giữ nguyên: transfer, transport, harvest'],
+   desc:'Động từ của máy in rơi xuống – chọn đuôi danh từ đúng trước khi chạm đáy. Trả lời đúng liên tiếp để tăng combo.',
+   pattern:['-tion: apply → application, rotate → rotation','-ment: move → movement · -age: pass → passage','-ing: loading, dampening, inking, coating, feeding, pressing, printing, drying, heating, cooling','Bẫy: the ink / the press / the print / the load là <i>vật</i>, không phải hoạt động','Giữ nguyên: transfer → the transfer of the image'],
    traps:['NOM_SUFFIX','NOM_ROOT'],
-   talk:['Vì sao "the heat of the clay" sai còn "the heating of the clay" đúng?','Nhóm -ing có điểm chung gì?','Động từ nào trong hình lithography giữ nguyên khi thành danh từ?'] },
+   talk:['Vì sao "the ink of the cylinder" sai còn "the inking of the cylinder" đúng?','Nhóm -ing có điểm chung gì?','Động từ nào trong hình lithography giữ nguyên khi thành danh từ?'] },
  { id:'G', cat:'Danh từ hoá', title:'Noun Phrase Builder', step:'Step 3 · Nominalisation', skill:'Apply/Create – dựng cụm', time:'5′',
    desc:'Biến câu bị động mô tả từng bước của máy thành cụm danh từ the + N + of + O để dùng trong Overview.',
    pattern:['<b>the + N + of + O</b> (bỏ tác nhân "by…")','The paper is dried by cold and hot dryers → <b>the drying of the paper</b>','The image is transferred onto the blanket cylinder → <b>the transfer of the image</b>'],
    traps:['NOM_ARTICLE','NOM_OF','NOM_BY','NOM_ROOT'],
    talk:['Khi danh từ hoá, tác nhân "by…" đi đâu?','Vì sao Overview cần cụm danh từ thay vì mệnh đề?'] },
  { id:'H', cat:'Danh từ hoá', title:'Overview Builder', step:'Step 3 · Nominalisation', skill:'Analyse → Create – chuyển giao', time:'5′',
-   desc:'Nhận diện loại quy trình, đếm stage, chọn khung Overview và điền cụm danh từ. Vòng cuối là Overview của đề lithography.',
+   desc:'Nhận diện loại quy trình, đếm stage, chọn khung Overview và điền cụm danh từ cho đề lithography.',
    pattern:['Major = <b>loại quy trình + số stage</b>; Broad = tên stage bằng cụm danh từ','Tuyến tính 3 stage: …consisting of three main stages, starting with the + N, followed by the + N, and ending with the + N.','Chu kỳ: …is a continuous cycle of n stages, beginning with… and ending with…, after which the cycle repeats.','Hai quy trình: …involves two separate processes, … and …, which are combined at the final stage.'],
    traps:['OV_TYPE','OV_FRAME','NOM_PARALLEL','NOM_VERB','OV_DETAIL'],
    talk:['Hai câu hỏi nào giúp em chọn đúng khung Overview?','Vì sao "the use of dampening and ink rollers" không nên nằm trong Overview?'] },
@@ -330,7 +321,7 @@ function renderHub(){
     <div><div class="gname">Print Shop Games</div><div class="muted" style="margin-top:6px">${esc(CONFIG.lessonTitle)}</div></div>
     <div class="meta">${esc(S.name)} · ${done}/${GAMES.length} game<br><a href="#" id="chg" class="muted" style="font-weight:500">Đổi tên</a></div>
   </div>
-  <div class="hint">Chơi theo thứ tự giáo viên giao. Trong lúc chơi chỉ báo <b>đúng/sai</b> – giải thích nằm ở trang báo <b>The Daily Error Report</b> cuối mỗi game.</div>
+  <div class="hint">Chơi theo thứ tự giáo viên giao. Trả lời sai sẽ thấy <b>đáp án đúng</b> ngay; cuối mỗi game, trang báo <b>The Daily Error Report</b> gom lại mọi lỗi kèm giải thích để em xem lại.</div>
   <div class="grid">
    ${GAMES.map(g=>{ const r=S.results[g.id]; return `
     <div class="gcard" data-g="${g.id}">
@@ -372,7 +363,16 @@ function startGame(id){
     alive(){ return !run.dead; },
     progress(){ if(run.dead) return; const d=run.items.length, t=run.total||1; $('.strip i').style.width = Math.min(100, d/t*100)+'%'; $('#cnt').textContent = run.items.filter(i=>i.ok).length + ' ✓'; },
     // left half of the screen: the picture for this round / item
-    figure(svg, cap){ const f=$('#fig'); if(run.dead||!f) return; f.innerHTML = (cap?`<div class="cap">${esc(cap)}</div>`:'') + svg; },
+    figure(html, cap){ const f=$('#fig'); if(run.dead||!f) return; f.innerHTML = (cap?`<div class="cap">${esc(cap)}</div>`:'') + html; },
+    // right: a short pause; wrong: show the key at once and wait for "Tiếp →"
+    async keyThen(ok, key){
+      if(ok){ await sleep(900); return; }
+      if(run.dead) return;
+      const box = document.createElement('div'); box.className = 'keybox';
+      box.innerHTML = `<div><span class="kl">Đáp án</span> ${key}</div><button class="btn primary small">Tiếp →</button>`;
+      api.root.appendChild(box); box.scrollIntoView({block:'nearest'});
+      await new Promise(r => box.querySelector('button').onclick = r);
+    },
     finish(){ if(!run.dead) finishGame(run); }
   };
   api.figure(lithoFig(), LITHO_CAP);
@@ -436,7 +436,7 @@ function renderSummary(g, res){
         ${groups.length? groups.map(([code, list])=>`
           <div class="err">
             <div class="h">${esc(ERR[code]?.label||code)} · ${list.length} lần</div>
-            ${list.slice(0,3).map(i=>`<div class="x">${i.prompt?`<span class="muted">${esc(i.prompt)}</span><br>`:''}<s>${esc(i.given)}</s> → <b>${esc(i.expected)}</b></div>`).join('')}
+            ${list.map(i=>`<div class="x">${i.prompt?`<span class="muted">${esc(i.prompt)}</span><br>`:''}<s>${esc(i.given)}</s> → <b>${esc(i.expected)}</b></div>`).join('')}
             <div class="vn">${esc(ERR[code]?.vn||'')}</div>
           </div>`).join('') : '<p>Em không mắc lỗi nào trong game này.</p>'}
       </div>
@@ -569,13 +569,7 @@ const GAME_RUNNERS = {};
 /* ---------- A · STAGE SORTER ---------- */
 GAME_RUNNERS.A = async function(api){
   const rounds = [
-    { title:'Vòng 1 · Order đồ ăn trên Grab Food', cards:[
-        ['1 · Open the app',0],['2 · Choose a restaurant',0],['3 · Add dishes to cart',0],['4 · Pay for the order',0],
-        ['5 · Order is accepted',1],['6 · Food is cooked',1],['7 · Food is packed',1],
-        ['8 · Driver is assigned',2],['9 · Food is picked up',2],['10 · Food is delivered',2],['11 · Food is received',2]],
-      names:[['Ordering','ok'],['Preparing','ok'],['Delivering','ok'],['Using the app','STG_NAME'],['Cooking','STG_NAME']],
-      answers:['Ordering','Preparing','Delivering'], fig:GRAB_SVG, cap:'Ordering food on Grab Food' },
-    { title:'Vòng 2 · Máy in lithography', fig:lithoFig(), cap:LITHO_CAP, cards: LITHO_STEPS.map(s=>[s.n+' · '+s.t, s.n<=3?0:s.n<=5?1:2]),
+    { title:'Máy in lithography · 6 bước → 3 stage', fig:lithoFig(), cap:LITHO_CAP, cards: LITHO_STEPS.map(s=>[s.n+' · '+s.t, s.n<=3?0:s.n<=5?1:2]),
       names:[['Inking the cylinder','ok'],['Printing the image onto paper','ok'],['Drying the paper','ok'],['Using rollers','GRP_EQUIP'],['Using cylinders','GRP_EQUIP']],
       answers:['Inking the cylinder','Printing the image onto paper','Drying the paper'] }
   ];
@@ -605,13 +599,15 @@ function playSortRound(api, rd, done){
   const check = async () => {
     $$('.chip,.bin').forEach(el=>el.style.pointerEvents='none');
     [0,1,2].forEach(b => st.bins[b].forEach(i => {
-      const ok = rd.cards[i][1]===b; flash($(`.chip[data-in="${i}"]`), ok);
+      const ok = rd.cards[i][1]===b, el = $(`.chip[data-in="${i}"]`); flash(el, ok);
+      if(!ok) el.insertAdjacentHTML('beforeend', `<span class="key">→ Stage ${rd.cards[i][1]+1}</span>`);
       api.record(ok,'STG_GROUP', rd.cards[i][0], 'Stage '+(b+1), 'Stage '+(rd.cards[i][1]+1));
     }));
     [0,1,2].forEach(b => {
       const n = st.names[b], ok = n===rd.answers[b];
       const code = ok ? null : (rd.names.find(x=>x[0]===n)[1]==='ok' ? 'STG_NAME' : rd.names.find(x=>x[0]===n)[1]);
       flash($(`.chip[data-name="${CSS.escape(n)}"][data-b="${b}"]`), ok);
+      if(!ok) $(`.bin[data-b="${b}"] .names`).insertAdjacentHTML('beforeend', `<span class="key">Tên đúng: ${esc(rd.answers[b])}</span>`);
       api.record(ok, code, 'Tên Stage '+(b+1), n, rd.answers[b]);
     });
     const next = document.createElement('button'); next.className='btn primary'; next.textContent='Tiếp tục →';
@@ -657,7 +653,9 @@ GAME_RUNNERS.B = async function(api){
           flash($(`[data-v="${v}"]`), okV); flash($(`[data-r="${r}"]`), okR);
           api.record(okV, verdictCode(p.v, v), `Step ${p.a} + ${p.b}: kết luận`, V[v], V[p.v]);
           api.record(okR, reasons[r][1], `Step ${p.a} + ${p.b}: lý do`, reasons[r][0], p.reasons[0][0]);
-          await sleep(900); done();
+          if(!okV) $(`[data-v="${p.v}"]`).classList.add('keyok');
+          if(!okR) $(`[data-r="${reasons.findIndex(x=>x[1]===null)}"]`).classList.add('keyok');
+          await api.keyThen(okV && okR, `<b>${esc(V[p.v])}</b> – ${esc(p.reasons[0][0])}`); done();
         };
       };
       draw();
@@ -668,20 +666,18 @@ GAME_RUNNERS.B = async function(api){
 
 /* ---------- F · SUFFIX RUSH ---------- */
 GAME_RUNNERS.F = async function(api){
-  const BINS = [['tion','-tion/-sion','production'],['ment','-ment','treatment'],['al','-al','removal'],['y','-y','delivery'],['age','-age','storage'],['ing','-ing','drying'],['same','giữ nguyên','transfer']];
+  const BINS = [['tion','-tion/-sion','production'],['ment','-ment','treatment'],['al','-al','removal'],['y','-y','delivery'],['age','-age','storage'],['ing','-ing','mixing'],['same','giữ nguyên','harvest']];
+  // every verb comes from the lithography process; root 1 = "the ink / the press…" is a thing, not the activity
   const BANK = [
-    ['ink','ing','inking',1],['dampen','ing','dampening',0],['press','ing','pressing',1],['dry','ing','drying',1],['feed','ing','feeding',0],['heat','ing','heating',1],['cool','ing','cooling',1],['mix','ing','mixing',1],
-    ['transfer','same','transfer',0],['transport','same','transport',0],['harvest','same','harvest',0],
-    ['produce','tion','production',0],['extract','tion','extraction',0],['distribute','tion','distribution',0],['collect','tion','collection',0],['filter','tion','filtration',0],['purify','tion','purification',0],
-    ['treat','ment','treatment',0],['develop','ment','development',0],['remove','al','removal',0],['arrive','al','arrival',0],['deliver','y','delivery',0],['store','age','storage',0],['pack','age','package',0]
+    ['load','ing','loading',1],['dampen','ing','dampening',0],['ink','ing','inking',1],['coat','ing','coating',1],['feed','ing','feeding',0],
+    ['press','ing','pressing',1],['print','ing','printing',1],['dry','ing','drying',1],['heat','ing','heating',1],['cool','ing','cooling',1],
+    ['apply','tion','application',0],['rotate','tion','rotation',0],['move','ment','movement',0],['pass','age','passage',0],['transfer','same','transfer',0]
   ];
-  // always include the diagram verbs, fill the rest randomly → 18 words
-  const diagram = ['ink','dampen','press','dry','feed','transfer'];
-  const words = shuffle(BANK.filter(w=>diagram.includes(w[0])).concat(shuffle(BANK.filter(w=>!diagram.includes(w[0]))).slice(0,12)));
+  const words = shuffle(BANK);
   api.setTotal(words.length);
   let combo = 0, dur = 8000;
   api.root.innerHTML = `
-    <div class="hint">Bấm đuôi đúng (hoặc phím <b>1–7</b>). Đúng liên tiếp → combo tăng và chữ rơi nhanh hơn. ⭐ = động từ có trên hình lithography.</div>
+    <div class="hint">Bấm đuôi đúng (hoặc phím <b>1–7</b>). Mọi động từ đều lấy từ quy trình lithography. Đúng liên tiếp → combo tăng và chữ rơi nhanh hơn.</div>
     <div class="row" style="justify-content:space-between;align-items:center;margin-bottom:8px"><span class="combo" id="combo">COMBO x0</span><span class="muted" id="left"></span></div>
     <div class="chute" id="chute"><div class="floor"></div></div>
     <div class="suffixes">${BINS.map((b,i)=>`<button class="btn" data-s="${b[0]}">${i+1}. ${b[1]}<small>${b[2]}</small></button>`).join('')}</div>`;
@@ -695,7 +691,7 @@ GAME_RUNNERS.F = async function(api){
     if(!api.alive()) break;
     const [v, suf, noun, root] = words[k];
     $('#left').textContent = `Từ ${k+1}/${words.length}`;
-    const el = document.createElement('div'); el.className='word'; el.textContent = v + (diagram.includes(v)?' ⭐':'');
+    const el = document.createElement('div'); el.className='word'; el.textContent = v;
     chute.appendChild(el);
     el.animate([{top:'-60px'},{top:'240px'}],{duration:dur, easing:'linear', fill:'forwards'});
     const given = await new Promise(res => { resolve = res; timer = setTimeout(()=>answer('timeout'), dur); });
@@ -709,7 +705,10 @@ GAME_RUNNERS.F = async function(api){
     api.record(ok, code, v, binLabel(given), `${binLabel(suf)} → the ${noun}`);
     combo = ok ? combo+1 : 0; if(ok) dur = Math.max(3500, dur-250);
     $('#combo').textContent = 'COMBO x' + combo;
-    await sleep(450); el.remove();
+    // key: the noun, plus the right suffix button when the answer was wrong
+    el.textContent = `${v} → the ${noun}`;
+    const keyBtn = ok ? null : $(`.suffixes [data-s="${suf}"]`); if(keyBtn) keyBtn.classList.add('keyok');
+    await sleep(ok ? 600 : 1800); el.remove(); if(keyBtn) keyBtn.classList.remove('keyok');
   }
   document.removeEventListener('keydown', onKey);
   api.finish();
@@ -758,7 +757,7 @@ GAME_RUNNERS.G = async function(api){
           const code = classify(used, exp);
           $('#line').classList.add(code?'ngf':'okf'); $('#line').style.background = code?'var(--ng-bg)':'var(--ok-bg)';
           api.record(!code, code, it.s, used.map(t=>t.t).join(' '), exp.join(' '));
-          await sleep(900); done();
+          await api.keyThen(!code, `<b>${esc(exp.join(' '))}</b>`); done();
         };
       };
       draw();
@@ -768,39 +767,16 @@ GAME_RUNNERS.G = async function(api){
 };
 
 /* =====================================================================
-   FIGURES – left half of each game screen. Black & white line drawings;
-   the steps being discussed are marked with --mark (lithoFig([4,5])).
+   FIGURE – left half of each game screen: SAM's lithography diagram,
+   with a ring on each step being discussed (lithoFig([4,5])).
    ===================================================================== */
 const LITHO_CAP = 'The process of lithography: a method used for printing newspapers';
-const ARROW = id => `<defs><marker id="${id}" viewBox="0 0 10 10" refX="9" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path class="arw" d="M0 0L10 5L0 10z"/></marker></defs>`;
 // the step numbers on LITHO_IMG; a ring marks each step being discussed
 const LITHO_NUM = {1:[178,252], 2:[124,162], 3:[203,103], 4:[285,378], 5:[458,263], 6:[636,403]};
 function lithoFig(on){
   const rings = (on || []).map(n => `<circle class="ring" cx="${LITHO_NUM[n][0]}" cy="${LITHO_NUM[n][1]}" r="18"/>`).join('');
   return `<div class="photo"><img src="${LITHO_IMG}" alt="${LITHO_CAP}" width="835" height="510"><svg viewBox="0 0 835 510" aria-hidden="true">${rings}</svg></div>`;
 }
-const GRAB_SVG = `<svg class="dg" viewBox="0 0 560 230" role="img" aria-label="Ordering food on Grab Food">${ARROW('gr-ar')}
-  <rect class="fl" x="40" y="50" width="62" height="110" rx="10"/><rect class="soft" x="48" y="62" width="46" height="80" rx="3"/><circle class="ln" cx="71" cy="151" r="4"/>
-  <path class="fl" d="M170 85L225 55L280 85Z"/><rect class="fl" x="178" y="85" width="94" height="75"/><rect class="soft" x="213" y="120" width="24" height="40"/>
-  <rect class="soft" x="318" y="104" width="26" height="22"/><path class="ln" d="M330 148L350 120H380L390 148M380 120L388 104H398"/>
-  <circle class="fl" cx="330" cy="148" r="12"/><circle class="fl" cx="390" cy="148" r="12"/>
-  <path class="fl" d="M450 92L490 62L530 92Z"/><rect class="fl" x="458" y="92" width="64" height="68"/><rect class="soft" x="482" y="125" width="16" height="35"/>
-  <g class="lab" text-anchor="middle"><text x="71" y="182">app</text><text x="225" y="182">restaurant</text><text x="360" y="182">driver</text><text x="490" y="182">customer</text></g>
-  <path class="dash" d="M60 205H515" marker-end="url(#gr-ar)"/>
-</svg>`;
-const MINI = {
-  frog: `<svg class="dg" viewBox="0 0 520 250" role="img" aria-label="The life cycle of a frog">${ARROW('fr-ar')}
-    <circle class="fl" cx="260" cy="52" r="33"/><circle class="fl" cx="410" cy="125" r="33"/><circle class="fl" cx="260" cy="198" r="33"/><circle class="fl" cx="110" cy="125" r="33"/>
-    <g text-anchor="middle" font-size="14"><text x="260" y="57">eggs</text><text x="410" y="130">tadpole</text><text x="260" y="203">froglet</text><text x="110" y="130">adult</text></g>
-    <g class="ln" marker-end="url(#fr-ar)"><path d="M293 56Q370 62 398 93"/><path d="M402 157Q370 196 295 200"/><path d="M226 200Q150 196 118 158"/><path d="M122 93Q150 54 226 50"/></g></svg>`,
-  concrete: `<svg class="dg" viewBox="0 0 560 190" role="img" aria-label="Cement production and concrete production">${ARROW('cc-ar')}
-    <rect class="fl" x="10" y="30" width="90" height="36"/><rect class="fl" x="125" y="30" width="80" height="36"/><rect class="fl" x="230" y="30" width="80" height="36"/><rect class="fl" x="335" y="30" width="80" height="36"/><rect class="soft" x="440" y="30" width="80" height="36"/>
-    <rect class="fl" x="130" y="130" width="150" height="36"/><rect class="fl" x="310" y="130" width="110" height="36"/><rect class="soft" x="445" y="130" width="80" height="36"/>
-    <g text-anchor="middle" font-size="13"><text x="55" y="53">limestone, clay</text><text x="165" y="53">crusher</text><text x="270" y="53">heater</text><text x="375" y="53">grinder</text><text x="480" y="53">cement</text>
-    <text x="205" y="153">cement, sand, gravel, water</text><text x="365" y="153">mixer</text><text x="485" y="153">concrete</text></g>
-    <g class="ln" marker-end="url(#cc-ar)"><path d="M100 48H123"/><path d="M205 48H228"/><path d="M310 48H333"/><path d="M415 48H438"/><path d="M480 66V100H205V128"/><path d="M280 148H308"/><path d="M420 148H443"/></g></svg>`
-};
-
 /* ---------- H · OVERVIEW BUILDER ---------- */
 GAME_RUNNERS.H = async function(api){
   const TYPES = ['Tuyến tính (linear)','Chu kỳ (cyclical)','Hai quy trình (two processes)'];
@@ -811,15 +787,7 @@ GAME_RUNNERS.H = async function(api){
     'T involves two separate processes, ___ and ___, which are combined at the final stage.'
   ];
   const rounds = [
-    { svg:MINI.frog, T:'The life cycle of a frog', type:1, count:4, frame:2,
-      slots:[ [['the laying of eggs',null],['lay eggs','NOM_VERB'],['laying of eggs','NOM_ARTICLE']],
-              [['the development of an adult frog',null],['develop into an adult frog','NOM_VERB'],['the develop of an adult frog','NOM_SUFFIX']] ],
-      final:'Overall, the life cycle of a frog is a continuous cycle of four stages, beginning with the laying of eggs and ending with the development of an adult frog, after which the cycle repeats.' },
-    { svg:MINI.concrete, T:'The production of concrete', type:2, count:2, frame:3,
-      slots:[ [['the production of cement',null],['the produce of cement','NOM_SUFFIX'],['producing cement','NOM_PARALLEL']],
-              [['the making of concrete',null],['make concrete','NOM_VERB'],['making of concrete','NOM_ARTICLE']] ],
-      final:'Overall, the production of concrete involves two separate processes, the production of cement and the making of concrete, which are combined at the final stage.' },
-    { svg:lithoFig(), T:'Lithography', cap:LITHO_CAP, type:0, count:3, frame:0,
+    { svg:lithoFig(), T:'Lithography', cap:LITHO_CAP, title:'Overview cho đề lithography', type:0, count:3, frame:0,
       slots:[ [['the inking of a printing cylinder',null],['ink a printing cylinder','NOM_VERB'],['the use of dampening and ink rollers','OV_DETAIL']],
               [['the transfer of the image onto paper',null],['transferring the image onto paper','NOM_PARALLEL'],['transfer of the image onto paper','NOM_ARTICLE']],
               [['the drying of the printed sheets',null],['the dry of the printed sheets','NOM_SUFFIX'],['the sheets are dried','NOM_PARALLEL']] ],
@@ -834,7 +802,7 @@ GAME_RUNNERS.H = async function(api){
       const draw = () => {
         const ready = sel.type!==null && sel.count!==null && sel.frame!==null && !sel.slots.includes(null);
         api.root.innerHTML = `
-          <h2 class="serif">Vòng ${ri+1}/3${ri===2?' · Đề của chúng ta':''}</h2>
+          <h2 class="serif">${esc(rd.title)}</h2>
           <div class="q">1. Đây là loại quy trình nào?</div><div class="row">${TYPES.map((t,i)=>`<button class="btn small ${sel.type===i?'sel':''}" data-type="${i}">${t}</button>`).join('')}</div>
           <div class="q">2. Có mấy stage (hoặc mấy quy trình)?</div><div class="row">${[2,3,4,5].map(n=>`<button class="btn small ${sel.count===n?'sel':''}" data-count="${n}">${n}</button>`).join('')}</div>
           <div class="q">3. Chọn khung Overview</div><div class="col">${FRAMES.map((f,i)=>`<button class="btn small ${sel.frame===i?'sel':''}" data-frame="${i}">${esc(f.replace(/^T /, rd.T+' ').replace(/ n stages/,' [n] stages'))}</button>`).join('')}</div>
@@ -854,8 +822,12 @@ GAME_RUNNERS.H = async function(api){
           api.record(okC,'OV_COUNT',rd.T+': số stage',String(sel.count),String(rd.count));
           api.record(okF,'OV_FRAME',rd.T+': khung',FRAMES[sel.frame].slice(0,48)+'…',FRAMES[rd.frame].slice(0,48)+'…');
           opts.forEach((o,si)=>{ const pick=o[sel.slots[si]]; const ok=pick[1]===null; flash($(`[data-slot="${si}"][data-o="${sel.slots[si]}"]`),ok);
+            if(!ok) $(`[data-slot="${si}"][data-o="${o.findIndex(x=>x[1]===null)}"]`).classList.add('keyok');
             api.record(ok,pick[1],rd.T+': chỗ trống '+(si+1),pick[0],rd.slots[si][0][0]); });
-          $('#model').innerHTML = `<div class="card" style="margin-top:16px;border-left:4px solid var(--y)"><b>Overview mẫu</b><br>${esc(rd.final)}</div><div class="row" style="margin-top:12px"><button class="btn primary" id="nx">${ri<2?'Vòng tiếp →':'Xem kết quả →'}</button></div>`;
+          if(!okT) $(`[data-type="${rd.type}"]`).classList.add('keyok');
+          if(!okC) $(`[data-count="${rd.count}"]`).classList.add('keyok');
+          if(!okF) $(`[data-frame="${rd.frame}"]`).classList.add('keyok');
+          $('#model').innerHTML = `<div class="card" style="margin-top:16px;border-left:4px solid var(--y)"><b>Overview mẫu</b><br>${esc(rd.final)}</div><div class="row" style="margin-top:12px"><button class="btn primary" id="nx">${ri<rounds.length-1?'Vòng tiếp →':'Xem kết quả →'}</button></div>`;
           $('#nx').style.pointerEvents='auto'; $('#nx').onclick = done;
         };
       };
@@ -899,7 +871,7 @@ GAME_RUNNERS.C = async function(api){
       const finish = async (ok, code, given) => {
         if(locked) return; locked = true; lockStage();
         api.record(ok, code, sentence, given, it.e===-1 ? 'Câu đúng – giữ nguyên' : right);
-        await sleep(900); done();
+        await api.keyThen(ok, it.e===-1 ? 'Câu này <b>đúng</b> – giữ nguyên.' : `<b>${esc(right)}</b>`); done();
       };
       const draw = () => {
         const seg = it.seg.map((s,i)=>`<span class="seg ${pick===i?'sel':''}" data-i="${i}" style="${phase==='pick'?'':'pointer-events:none;border-bottom-color:transparent'}">${esc(s)}</span>`).join(' ');
@@ -970,7 +942,7 @@ GAME_RUNNERS.E = async function(api){
           const code = ok ? null : (bad ? bad.c : 'CMB_ORDER');
           $('#line').style.background = ok ? 'var(--ok-bg)' : 'var(--ng-bg)';
           api.record(ok, code, it.s1+' + '+it.s2, given, it.a.join(' '));
-          await sleep(1000); done();
+          await api.keyThen(ok, `<b>${esc(it.a.join(' '))}</b>`); done();
         };
       };
       draw();
@@ -1016,9 +988,11 @@ GAME_RUNNERS.D = async function(api){
         for(let k=0;k<4;k++){
           const okS = st.sent[k]===k;
           flash($(`[data-ks="${k}"]`), okS);
+          if(!okS) $(`[data-ks="${k}"]`).insertAdjacentHTML('beforeend', `<span class="key">✓ … ${esc(SENT[k])}</span>`);
           api.record(okS,'TM_ORDER','Vị trí '+(k+1)+': câu','… '+SENT[st.sent[k]],'… '+SENT[k]);
           const m = st.mark[k], okM = ACCEPT[k].includes(m);
           flash($(`[data-km="${k}"]`), okM);
+          if(!okM) $(`[data-km="${k}"]`).insertAdjacentHTML('beforeend', `<span class="key">✓ ${esc(ACCEPT[k].join(' / '))}</span>`);
           api.record(okM, MCODE[m]||'TM_LOGIC', 'Vị trí '+(k+1)+': marker', m, ACCEPT[k][0]);
         }
         const nx = document.createElement('button'); nx.className='btn primary'; nx.textContent='Xem kết quả →';
